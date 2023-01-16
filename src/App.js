@@ -1321,7 +1321,7 @@ const search = async (d) => {
              <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
               
                <Col sm="8">
-                 <Form.Control onChange={(e) => setInputData(e.target.value)} type="text" placeholder="Beispiel: TBK 09.01.2023 09:46" /> <br></br>
+                 <Form.Control onChange={(e) => setInputData(e.target.value)} type="text" placeholder="Beispiel: 09.01.2023 09:46" /> <br></br>
                  <Button  variant="info" onClick={bestaetigen}>
             Bestätigen
           </Button>
