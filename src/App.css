@@ -46,6 +46,11 @@ a{
   cursor: pointer;
 }
 
+td{
+  cursor: pointer;
+}
+
+
 
 @keyframes App-logo-spin {
   from {

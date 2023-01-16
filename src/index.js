@@ -20,8 +20,8 @@ root.render(
 
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
-          <Route path="/bestaetigt/:id" element={<Bestaetigt />} />
+        <Route path="/dhworld" element={<App />} />
+          <Route path="/dhworld/bestaetigt/:id" element={<Bestaetigt />} />
       </Routes>
     </BrowserRouter>
 

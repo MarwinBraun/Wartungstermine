@@ -46,6 +46,7 @@ const Bestaetigt = () => {
         <br></br>
       <Row className="text-center justify-content-center">
   <Col xs={7} md={2}  >
+  <h3>DH World</h3><br></br>
   <img className='img-fluid' src={bild}/>
   </Col>
 </Row>

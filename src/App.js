@@ -15,13 +15,38 @@ import './App.css';
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(3);
+  const [postsPerPage] = useState(10);
   const [Daten, setDaten] = useState([]);
   const [Loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
+  const [InputData, setInputData] = useState('');
 
   const handleClose = () => setShow(false);
+  const handleCloseEdit = () => {setShowEdit(false); alert(TerminID)};
   const handleShow = () => setShow(true);
+  const handleShowEdit = (k) => { setShowEdit(true); setInputField(false); setCurrentTerminID(k); alert(k)};
+  const handleEdit = () => setShowEdit(true);
+
+  const handleBestaetigen = () => {
+
+  };
+
+  const handleNeuerTermin = () => {
+    setInputField(true);
+  };
+
+
+  const handleDeleteTermin = () => {
+    
+  };
+
+  const bestaetigen = () => {
+    
+  };
+
+
+
 
 
   const [ID, setID] = useState(true);
@@ -64,6 +89,8 @@ function App() {
   const [Kdi_Gebaeude, setKdi_Gebaeude] = useState(true);
   const [KDI_WVAnlageArt, setKDI_WVAnlageArt] = useState(true);
   const [TerminBestaetigungsdatum, setTerminBestaetigungsdatum] = useState(true);
+  const [InputField, setInputField] = useState(false);
+  const [TerminID, setCurrentTerminID] = useState(0);
 
 
   useEffect(() => {   
@@ -1088,7 +1115,48 @@ const search = async (d) => {
 
 
     
-    <Container fluid>
+    <Container>
+
+      
+<Modal show={showEdit} onHide={handleCloseEdit}>
+        <Modal.Header closeButton>
+          <Modal.Title>Optionen</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <div className="d-grid gap-2">
+        <Button size="lg" variant="success" onClick={handleBestaetigen}>
+            Termin bestätigen
+          </Button>
+          <Button size="lg" variant="secondary" onClick={handleNeuerTermin}>Neuer Termin</Button>
+            
+            {InputField === true ? (
+             <Form>
+             <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+              
+               <Col sm="8">
+                 <Form.Control onChange={(e) => setInputData(e.target.value)} type="text" placeholder="zum Beispiel 16.01.2023" /> <br></br>
+                 <Button  variant="info" onClick={() => bestaetigen}>
+            Bestätigen
+          </Button>
+               </Col>
+             </Form.Group>
+             </Form>
+       
+            ) : (null)}
+         
+          <Button size="lg" variant="danger" onClick={handleDeleteTermin}>
+            Termin löschen
+          </Button>
+          </div>
+
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseEdit}>
+            Schließen
+          </Button>
+       
+        </Modal.Footer>
+      </Modal>
 
 <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -1442,6 +1510,7 @@ const search = async (d) => {
 
 <Row className="text-center justify-content-center">
   <Col xs={7} md={2}  >
+    <h3>DH World</h3><br></br>
   <img className='img-fluid' src={bild}/>
   </Col>
 </Row>
@@ -1524,7 +1593,7 @@ const search = async (d) => {
       </thead>
       <tbody>
       {currentPosts.map((v, index) => (
-        <tr key={index}>
+        <tr key={index} onClick={() => handleShowEdit(v.ID)}>
      {TerminBestaetigungsdatum === true ? ( <td >{v.TerminBestaetigungsdatum}</td>) : (null)}
      {DokumentenNummer === true ? (<td >{v.Dokument_Nummer}</td>) : (null)}
      {Datum_Dokument === true ? ( <td >{v.Datum_Dokument}</td>) : (null)}
