@@ -167,7 +167,7 @@ TerminBestaetigungsdatum : TerminBestaetigungsdatum
 
 
       try {
-        const res = await axios.get('http://192.168.1.11:81/load.php', {
+        const res = await axios.get('http://mail.dietenmeier-harsch.de:81/load.php', {
           
         
         });
@@ -213,7 +213,7 @@ const search = async (d) => {
 
  
     try {
-        const res = await axios.get('http://192.168.1.11:81/autocomplete.php',  {
+        const res = await axios.get('http://mail.dietenmeier-harsch.de:81/autocomplete.php',  {
           params: {val: val}
         
         });
@@ -1584,7 +1584,7 @@ const search = async (d) => {
       <ul className='pagination justify-content-center'>
         {pageNumbers.map(number => (
           <li key={number}  className={'page-item'}>
-            <a onClick={() => paginate(number)} href='!#' className={'page-link ' + (number == currentPage ? 'hinter' : 'k')}>
+            <a onClick={() => paginate(number)} className={'page-link ' + (number == currentPage ? 'hinter' : 'k')}>
               {number}
             </a>
           </li>

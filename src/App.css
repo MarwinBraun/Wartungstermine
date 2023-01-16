@@ -38,6 +38,13 @@
 
 }
 
+.bigger{
+  font-size: 57px;
+}
+
+a{
+  cursor: pointer;
+}
 
 
 @keyframes App-logo-spin {
