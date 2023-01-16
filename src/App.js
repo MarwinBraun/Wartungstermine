@@ -23,12 +23,34 @@ function App() {
   const [InputData, setInputData] = useState('');
 
   const handleClose = () => setShow(false);
-  const handleCloseEdit = () => {setShowEdit(false); alert(TerminID)};
+  const handleCloseEdit = () => {setShowEdit(false);};
   const handleShow = () => setShow(true);
-  const handleShowEdit = (k) => { setShowEdit(true); setInputField(false); setCurrentTerminID(k); alert(k)};
+  const handleShowEdit = (k) => { setShowEdit(true); setInputField(false); setCurrentTerminID(k);};
   const handleEdit = () => setShowEdit(true);
 
-  const handleBestaetigen = () => {
+  const handleBestaetigen = async () => {
+
+    try {
+      const res = await axios.get('http://mail.dietenmeier-harsch.de:81/Neubestaetigen.php', {
+        params: { TerminID: TerminID}, 
+        
+      
+      });
+      
+      
+
+    
+      handleCloseEdit();
+      Load();
+     
+    } catch (err) {
+      if (err.response.status === 500) {
+        alert('There was a problem with the server');
+      } else {
+        alert(err.response.data.msg);
+      }
+      
+    }
 
   };
 
@@ -37,12 +59,177 @@ function App() {
   };
 
 
-  const handleDeleteTermin = () => {
+  const handleDeleteTermin = async () => {
+
+    try {
+      const res = await axios.get('http://mail.dietenmeier-harsch.de:81/delete.php', {
+        params: { TerminID: TerminID}, 
+        
+      
+      });
+      
+      
+
+    
+      handleCloseEdit();
+      Load();
+     
+    } catch (err) {
+      if (err.response.status === 500) {
+        alert('There was a problem with the server');
+      } else {
+        alert(err.response.data.msg);
+      }
+      
+    }
     
   };
 
-  const bestaetigen = () => {
+  const bestaetigen = async () => {
+
     
+    try {
+      const res = await axios.get('http://mail.dietenmeier-harsch.de:81/Selbstbestaetigung.php', {
+        params: { TerminID: TerminID, InputData: InputData}, 
+        
+      
+      });
+      
+      
+
+    
+      handleCloseEdit();
+      Load();
+     
+    } catch (err) {
+      if (err.response.status === 500) {
+        alert('There was a problem with the server');
+      } else {
+        alert(err.response.data.msg);
+      }
+      
+    }
+    
+  };
+
+  const Load = async () => {
+    setLoading(true);
+
+    if(localStorage.getItem("settings") !== null){
+      var einstellungen = localStorage.getItem("settings");
+      var parsed = JSON.parse(einstellungen);
+     setID(parsed.ID);
+     setDokumentenNummer(parsed.DokumentenNummer);
+     setKunde_Anrede(parsed.Kunde_Anrede);
+setKunde_Name1(parsed.Kunde_Name1);
+setKunde_Name2(parsed.Kunde_Name2);
+setKunde_Strasse(parsed.Kunde_Strasse);
+setKunde_Landeskennz(parsed.Kunde_Landeskennz);
+setKunde_Postleitzahl(parsed.Kunde_Postleitzahl);
+setKunde_Ort(parsed.Kunde_Ort);
+setKdi_BesuchEMail(parsed.Kdi_BesuchEMail);
+setDatum_Dokument(parsed.Datum_Dokument);
+setLiefer_AdressNummer(parsed.Liefer_AdressNummer);
+setLiefer_Anrede(parsed.Liefer_Anrede);
+setLiefer_Name1(parsed.Liefer_Name1);
+setLiefer_Name2(parsed.Liefer_Name2);
+setLiefer_Name3(parsed.Liefer_Name3);
+setLiefer_Tel_LandWahl(parsed.Liefer_Tel_LandWahl);
+setLiefer_Tel_Vorwahl(parsed.Liefer_Tel_Vorwahl);
+setLiefer_Tel_Rufnummer(parsed.Liefer_Tel_Rufnummer);
+setLiefer_Tel_Durchwahl(parsed.Liefer_Tel_Durchwahl);
+setDatum_Ersterfassung(parsed.Datum_Ersterfassung);
+setZeit_Ersterfassung(parsed.Zeit_Ersterfassung);
+setDOK_Phase(parsed.DOK_Phase);
+setDOK_Disposition_Datum(parsed.DOK_Disposition_Datum);
+setDOK_Disposition_Zeit(parsed.DOK_Disposition_Zeit);
+setKdi_Gruppe(parsed.Kdi_Gruppe);
+setKdiWartung_VertragNr(parsed.KdiWartung_VertragNr);
+setKdiEingang_AnsprPart(parsed.KdiEingang_AnsprPart);
+setKdi_AuftrBeschreibng(parsed.Kdi_AuftrBeschreibng);
+setKdiTermin_Datum(parsed.KdiTermin_Datum);
+setKdiTermin_Uhrzeit(parsed.KdiTermin_Uhrzeit);
+setKdiTermin_BisUhrzeit(parsed.KdiTermin_BisUhrzeit);
+setKdiTermin_Dauer(parsed.KdiTermin_Dauer);
+setKdi_RechEMail(parsed.Kdi_RechEMail);
+setKdi_Terminwunsch(parsed.Kdi_Terminwunsch);
+setStoerungscode(parsed.Stoerungscode);
+setKdi_GebaeudeKomplex(parsed.Kdi_GebaeudeKomplex);
+setKdi_Gebaeude(parsed.Kdi_Gebaeude);
+setKDI_WVAnlageArt(parsed.KDI_WVAnlageArt);
+setTerminBestaetigungsdatum(parsed.TerminBestaetigungsdatum);
+
+
+      
+    }else{
+      var obj = {
+        ID : ID,
+        DokumentenNummer: DokumentenNummer,
+        Kunde_Anrede : Kunde_Anrede,
+Kunde_Name1 : Kunde_Name1,
+Kunde_Name2 : Kunde_Name2,
+Kunde_Strasse : Kunde_Strasse,
+Kunde_Landeskennz : Kunde_Landeskennz, 
+Kunde_Postleitzahl : Kunde_Postleitzahl,
+Kunde_Ort : Kunde_Ort,
+Kdi_BesuchEMail : Kdi_BesuchEMail,
+Datum_Dokument : Datum_Dokument,
+Liefer_AdressNummer : Liefer_AdressNummer,
+Liefer_Anrede : Liefer_Anrede,
+Liefer_Name1 : Liefer_Name1,
+Liefer_Name2 : Liefer_Name2,
+Liefer_Name3 : Liefer_Name3,
+Liefer_Tel_LandWahl : Liefer_Tel_LandWahl, 
+Liefer_Tel_Vorwahl : Liefer_Tel_Vorwahl,
+Liefer_Tel_Rufnummer : Liefer_Tel_Rufnummer,
+Liefer_Tel_Durchwahl : Liefer_Tel_Durchwahl,
+Datum_Ersterfassung : Datum_Ersterfassung,
+Zeit_Ersterfassung : Zeit_Ersterfassung,
+DOK_Phase : DOK_Phase,
+DOK_Disposition_Datum : DOK_Disposition_Datum,
+DOK_Disposition_Zeit : DOK_Disposition_Zeit,
+Kdi_Gruppe : Kdi_Gruppe,
+KdiWartung_VertragNr : KdiWartung_VertragNr,
+KdiEingang_AnsprPart : KdiEingang_AnsprPart,
+Kdi_AuftrBeschreibng : Kdi_AuftrBeschreibng,
+KdiTermin_Datum : KdiTermin_Datum,
+KdiTermin_Uhrzeit : KdiTermin_Uhrzeit,
+KdiTermin_BisUhrzeit : KdiTermin_BisUhrzeit,
+KdiTermin_Dauer : KdiTermin_Dauer,
+Kdi_RechEMail : Kdi_RechEMail,
+Kdi_Terminwunsch : Kdi_Terminwunsch,
+Stoerungscode : Stoerungscode,
+Kdi_GebaeudeKomplex : Kdi_GebaeudeKomplex,
+Kdi_Gebaeude : Kdi_Gebaeude,
+KDI_WVAnlageArt : KDI_WVAnlageArt, 
+TerminBestaetigungsdatum : TerminBestaetigungsdatum
+        
+      }
+     
+      localStorage.setItem("settings", JSON.stringify(obj)); 
+    }
+
+
+    try {
+      const res = await axios.get('http://mail.dietenmeier-harsch.de:81/load.php', {
+        
+      
+      });
+      
+      
+
+     setDaten(res.data.daten);
+     setLoading(false);
+
+     
+    } catch (err) {
+      if (err.response.status === 500) {
+        alert('There was a problem with the server');
+      } else {
+        alert(err.response.data.msg);
+      }
+      
+    }
   };
 
 
@@ -1134,8 +1321,8 @@ const search = async (d) => {
              <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
               
                <Col sm="8">
-                 <Form.Control onChange={(e) => setInputData(e.target.value)} type="text" placeholder="zum Beispiel 16.01.2023" /> <br></br>
-                 <Button  variant="info" onClick={() => bestaetigen}>
+                 <Form.Control onChange={(e) => setInputData(e.target.value)} type="text" placeholder="Beispiel: TBK 09.01.2023 09:46" /> <br></br>
+                 <Button  variant="info" onClick={bestaetigen}>
             Bestätigen
           </Button>
                </Col>
