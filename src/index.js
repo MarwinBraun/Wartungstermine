@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import Bestaetigt from './components/Bestaetigt';
+import Login from './components/Login';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
 import $ from 'jquery';
@@ -22,6 +23,7 @@ root.render(
       <Routes>
         <Route path="/dhworld" element={<App />} />
           <Route path="/dhworld/bestaetigt/:id" element={<Bestaetigt />} />
+          <Route path="/dhworld/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
 
