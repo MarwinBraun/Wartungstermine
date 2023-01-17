@@ -15,11 +15,13 @@ import './App.css';
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(10);
+  const [postsPerPage, setpostsPerPage] = useState(10);
   const [Daten, setDaten] = useState([]);
   const [Loading, setLoading] = useState(false);
+  const [LoadingModal, setLoadingModal] = useState(false);
   const [show, setShow] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
+  const [alle, setalle] = useState(false);
   const [InputData, setInputData] = useState('');
 
   const handleClose = () => setShow(false);
@@ -29,7 +31,7 @@ function App() {
   const handleEdit = () => setShowEdit(true);
 
   const handleBestaetigen = async () => {
-
+    setLoadingModal(true);
     try {
       const res = await axios.get('http://mail.dietenmeier-harsch.de:81/Neubestaetigen.php', {
         params: { TerminID: TerminID}, 
@@ -39,9 +41,10 @@ function App() {
       
       
 
-    
+      
       handleCloseEdit();
       Load();
+      setLoadingModal(false);
      
     } catch (err) {
       if (err.response.status === 500) {
@@ -60,7 +63,7 @@ function App() {
 
 
   const handleDeleteTermin = async () => {
-
+    setLoadingModal(true);
     try {
       const res = await axios.get('http://mail.dietenmeier-harsch.de:81/delete.php', {
         params: { TerminID: TerminID}, 
@@ -73,6 +76,7 @@ function App() {
     
       handleCloseEdit();
       Load();
+      setLoadingModal(false);
      
     } catch (err) {
       if (err.response.status === 500) {
@@ -86,7 +90,7 @@ function App() {
   };
 
   const bestaetigen = async () => {
-
+    setLoadingModal(true);
     
     try {
       const res = await axios.get('http://mail.dietenmeier-harsch.de:81/Selbstbestaetigung.php', {
@@ -100,6 +104,7 @@ function App() {
     
       handleCloseEdit();
       Load();
+      setLoadingModal(false);
      
     } catch (err) {
       if (err.response.status === 500) {
@@ -111,6 +116,20 @@ function App() {
     }
     
   };
+
+  const seiten = (e) => {
+    if(e.target.value === 'alle'){
+      setpostsPerPage(e.target.value);
+      setalle(true);
+      paginate(1);
+    }else{
+     
+      setpostsPerPage(e.target.value);
+      setalle(false);
+      paginate(1);
+    }
+ 
+  }
 
   const Load = async () => {
     setLoading(true);
@@ -1310,6 +1329,14 @@ const search = async (d) => {
           <Modal.Title>Optionen</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+        {LoadingModal === true ? (
+ <Row>
+ <Col  xs={12} className="text-center">
+ <Spinner animation="border" variant="primary" />
+ </Col>
+
+</Row>
+) : (
         <div className="d-grid gap-2">
         <Button size="lg" variant="success" onClick={handleBestaetigen}>
             Termin bestätigen
@@ -1335,6 +1362,8 @@ const search = async (d) => {
             Termin löschen
           </Button>
           </div>
+
+) }
 
         </Modal.Body>
         <Modal.Footer>
@@ -1779,51 +1808,103 @@ const search = async (d) => {
         </tr>
       </thead>
       <tbody>
-      {currentPosts.map((v, index) => (
-        <tr key={index} onClick={() => handleShowEdit(v.ID)}>
-     {TerminBestaetigungsdatum === true ? ( <td >{v.TerminBestaetigungsdatum}</td>) : (null)}
-     {DokumentenNummer === true ? (<td >{v.Dokument_Nummer}</td>) : (null)}
-     {Datum_Dokument === true ? ( <td >{v.Datum_Dokument}</td>) : (null)}
-     {Zeit_Ersterfassung === true ? ( <td >{v.Zeit_Ersterfassung}</td>) : (null)}
-     {Liefer_AdressNummer === true ? ( <td >{v.Liefer_AdressNummer}</td>) : (null)}
-     {Liefer_Anrede === true ? ( <td >{v.Liefer_Anrede}</td>) : (null)}
-     {Liefer_Name1 === true ? ( <td >{v.Liefer_Name1}</td>) : (null)}
-     {Liefer_Name2 === true ? ( <td >{v.Liefer_Name2}</td>) : (null)}
-     {Liefer_Name3 === true ? ( <td >{v.Liefer_Name3}</td>) : (null)}
-     {Liefer_Tel_LandWahl === true ? ( <td >{v.Liefer_Tel_LandWahl}</td>) : (null)}
-     {Liefer_Tel_Vorwahl === true ? ( <td >{v.Liefer_Tel_Vorwahl}</td>) : (null)}
-     {Liefer_Tel_Rufnummer === true ? ( <td >{v.Liefer_Tel_Rufnummer}</td>) : (null)}
-     {Liefer_Tel_Durchwahl === true ? ( <td >{v.Liefer_Tel_Durchwahl}</td>) : (null)}
-     {DOK_Phase === true ? ( <td >{v.DOK_Phase}</td>) : (null)}
-     {DOK_Disposition_Datum === true ? ( <td >{v.DOK_Disposition_Datum}</td>) : (null)}
-     {DOK_Disposition_Zeit === true ? ( <td >{v.DOK_Disposition_Zeit}</td>) : (null)}
-     {Kdi_Gruppe === true ? ( <td >{v.Kdi_Gruppe}</td>) : (null)}
-     {KdiWartung_VertragNr === true ? ( <td >{v.KdiWartung_VertragNr}</td>) : (null)}
-     {KdiEingang_AnsprPart === true ? ( <td >{v.KdiEingang_AnsprPart}</td>) : (null)}
-     {Kdi_AuftrBeschreibng === true ? ( <td >{v.Kdi_AuftrBeschreibng}</td>) : (null)}
-     {KdiTermin_Datum === true ? ( <td >{v.KdiTermin_Datum}</td>) : (null)}
-     {KdiTermin_Uhrzeit === true ? ( <td >{v.KdiTermin_Uhrzeit}</td>) : (null)}
-     {KdiTermin_BisUhrzeit === true ? ( <td >{v.KdiTermin_BisUhrzeit}</td>) : (null)}
-     {KdiTermin_Dauer === true ? (  <td >{v.KdiTermin_Dauer}</td>) : (null)}
-     {Kdi_RechEMail === true ? ( <td >{v.Kdi_RechEMail}</td>) : (null)}
-     {Kdi_Terminwunsch === true ? ( <td >{v.Kdi_Terminwunsch}</td>) : (null)}
-     {Stoerungscode === true ? ( <td >{v.Stoerungscode}</td>) : (null)}
-     {Kdi_GebaeudeKomplex === true ? ( <td >{v.Kdi_GebaeudeKomplex}</td>) : (null)}
-     {Kdi_Gebaeude === true ? ( <td >{v.Kdi_Gebaeude}</td>) : (null)}
-     {KDI_WVAnlageArt === true ? ( <td >{v.KDI_WVAnlageArt}</td>) : (null)}
-     {Kunde_Anrede === true ? (<td >{v.Kunde_Anrede}</td>) : (null)}
-     {Kunde_Name1 === true ? ( <td >{v.Kunde_Name1}</td>) : (null)}
-     {Kunde_Name2 === true ? ( <td >{v.Kunde_Name2}</td>) : (null)}
-     {Kunde_Strasse === true ? ( <td >{v.Kunde_Strasse}</td>) : (null)}
-     {Kunde_Landeskennz === true ? ( <td >{v.Kunde_Landeskennz}</td>) : (null)}
-     {Kunde_Postleitzahl === true ? ( <td >{v.Kunde_Postleitzahl}</td>) : (null)}
-     {Kunde_Ort === true ? (<td >{v.Kunde_Ort}</td>) : (null)}
-     {Kdi_BesuchEMail === true ? ( <td >{v.Kdi_BesuchEMail}</td>) : (null)}
+      {alle === true ? (
+        Daten.map((v, index) => (
+          <tr key={index} onClick={() => handleShowEdit(v.ID)}>
+       {TerminBestaetigungsdatum === true ? ( <td >{v.TerminBestaetigungsdatum}</td>) : (null)}
+       {DokumentenNummer === true ? (<td >{v.Dokument_Nummer}</td>) : (null)}
+       {Datum_Dokument === true ? ( <td >{v.Datum_Dokument}</td>) : (null)}
+       {Zeit_Ersterfassung === true ? ( <td >{v.Zeit_Ersterfassung}</td>) : (null)}
+       {Liefer_AdressNummer === true ? ( <td >{v.Liefer_AdressNummer}</td>) : (null)}
+       {Liefer_Anrede === true ? ( <td >{v.Liefer_Anrede}</td>) : (null)}
+       {Liefer_Name1 === true ? ( <td >{v.Liefer_Name1}</td>) : (null)}
+       {Liefer_Name2 === true ? ( <td >{v.Liefer_Name2}</td>) : (null)}
+       {Liefer_Name3 === true ? ( <td >{v.Liefer_Name3}</td>) : (null)}
+       {Liefer_Tel_LandWahl === true ? ( <td >{v.Liefer_Tel_LandWahl}</td>) : (null)}
+       {Liefer_Tel_Vorwahl === true ? ( <td >{v.Liefer_Tel_Vorwahl}</td>) : (null)}
+       {Liefer_Tel_Rufnummer === true ? ( <td >{v.Liefer_Tel_Rufnummer}</td>) : (null)}
+       {Liefer_Tel_Durchwahl === true ? ( <td >{v.Liefer_Tel_Durchwahl}</td>) : (null)}
+       {DOK_Phase === true ? ( <td >{v.DOK_Phase}</td>) : (null)}
+       {DOK_Disposition_Datum === true ? ( <td >{v.DOK_Disposition_Datum}</td>) : (null)}
+       {DOK_Disposition_Zeit === true ? ( <td >{v.DOK_Disposition_Zeit}</td>) : (null)}
+       {Kdi_Gruppe === true ? ( <td >{v.Kdi_Gruppe}</td>) : (null)}
+       {KdiWartung_VertragNr === true ? ( <td >{v.KdiWartung_VertragNr}</td>) : (null)}
+       {KdiEingang_AnsprPart === true ? ( <td >{v.KdiEingang_AnsprPart}</td>) : (null)}
+       {Kdi_AuftrBeschreibng === true ? ( <td >{v.Kdi_AuftrBeschreibng}</td>) : (null)}
+       {KdiTermin_Datum === true ? ( <td >{v.KdiTermin_Datum}</td>) : (null)}
+       {KdiTermin_Uhrzeit === true ? ( <td >{v.KdiTermin_Uhrzeit}</td>) : (null)}
+       {KdiTermin_BisUhrzeit === true ? ( <td >{v.KdiTermin_BisUhrzeit}</td>) : (null)}
+       {KdiTermin_Dauer === true ? (  <td >{v.KdiTermin_Dauer}</td>) : (null)}
+       {Kdi_RechEMail === true ? ( <td >{v.Kdi_RechEMail}</td>) : (null)}
+       {Kdi_Terminwunsch === true ? ( <td >{v.Kdi_Terminwunsch}</td>) : (null)}
+       {Stoerungscode === true ? ( <td >{v.Stoerungscode}</td>) : (null)}
+       {Kdi_GebaeudeKomplex === true ? ( <td >{v.Kdi_GebaeudeKomplex}</td>) : (null)}
+       {Kdi_Gebaeude === true ? ( <td >{v.Kdi_Gebaeude}</td>) : (null)}
+       {KDI_WVAnlageArt === true ? ( <td >{v.KDI_WVAnlageArt}</td>) : (null)}
+       {Kunde_Anrede === true ? (<td >{v.Kunde_Anrede}</td>) : (null)}
+       {Kunde_Name1 === true ? ( <td >{v.Kunde_Name1}</td>) : (null)}
+       {Kunde_Name2 === true ? ( <td >{v.Kunde_Name2}</td>) : (null)}
+       {Kunde_Strasse === true ? ( <td >{v.Kunde_Strasse}</td>) : (null)}
+       {Kunde_Landeskennz === true ? ( <td >{v.Kunde_Landeskennz}</td>) : (null)}
+       {Kunde_Postleitzahl === true ? ( <td >{v.Kunde_Postleitzahl}</td>) : (null)}
+       {Kunde_Ort === true ? (<td >{v.Kunde_Ort}</td>) : (null)}
+       {Kdi_BesuchEMail === true ? ( <td >{v.Kdi_BesuchEMail}</td>) : (null)}
+      
+      
+          </tr>
+          
+      ))
+      ) : (
+        currentPosts.map((v, index) => (
+          <tr key={index} onClick={() => handleShowEdit(v.ID)}>
+       {TerminBestaetigungsdatum === true ? ( <td >{v.TerminBestaetigungsdatum}</td>) : (null)}
+       {DokumentenNummer === true ? (<td >{v.Dokument_Nummer}</td>) : (null)}
+       {Datum_Dokument === true ? ( <td >{v.Datum_Dokument}</td>) : (null)}
+       {Zeit_Ersterfassung === true ? ( <td >{v.Zeit_Ersterfassung}</td>) : (null)}
+       {Liefer_AdressNummer === true ? ( <td >{v.Liefer_AdressNummer}</td>) : (null)}
+       {Liefer_Anrede === true ? ( <td >{v.Liefer_Anrede}</td>) : (null)}
+       {Liefer_Name1 === true ? ( <td >{v.Liefer_Name1}</td>) : (null)}
+       {Liefer_Name2 === true ? ( <td >{v.Liefer_Name2}</td>) : (null)}
+       {Liefer_Name3 === true ? ( <td >{v.Liefer_Name3}</td>) : (null)}
+       {Liefer_Tel_LandWahl === true ? ( <td >{v.Liefer_Tel_LandWahl}</td>) : (null)}
+       {Liefer_Tel_Vorwahl === true ? ( <td >{v.Liefer_Tel_Vorwahl}</td>) : (null)}
+       {Liefer_Tel_Rufnummer === true ? ( <td >{v.Liefer_Tel_Rufnummer}</td>) : (null)}
+       {Liefer_Tel_Durchwahl === true ? ( <td >{v.Liefer_Tel_Durchwahl}</td>) : (null)}
+       {DOK_Phase === true ? ( <td >{v.DOK_Phase}</td>) : (null)}
+       {DOK_Disposition_Datum === true ? ( <td >{v.DOK_Disposition_Datum}</td>) : (null)}
+       {DOK_Disposition_Zeit === true ? ( <td >{v.DOK_Disposition_Zeit}</td>) : (null)}
+       {Kdi_Gruppe === true ? ( <td >{v.Kdi_Gruppe}</td>) : (null)}
+       {KdiWartung_VertragNr === true ? ( <td >{v.KdiWartung_VertragNr}</td>) : (null)}
+       {KdiEingang_AnsprPart === true ? ( <td >{v.KdiEingang_AnsprPart}</td>) : (null)}
+       {Kdi_AuftrBeschreibng === true ? ( <td >{v.Kdi_AuftrBeschreibng}</td>) : (null)}
+       {KdiTermin_Datum === true ? ( <td >{v.KdiTermin_Datum}</td>) : (null)}
+       {KdiTermin_Uhrzeit === true ? ( <td >{v.KdiTermin_Uhrzeit}</td>) : (null)}
+       {KdiTermin_BisUhrzeit === true ? ( <td >{v.KdiTermin_BisUhrzeit}</td>) : (null)}
+       {KdiTermin_Dauer === true ? (  <td >{v.KdiTermin_Dauer}</td>) : (null)}
+       {Kdi_RechEMail === true ? ( <td >{v.Kdi_RechEMail}</td>) : (null)}
+       {Kdi_Terminwunsch === true ? ( <td >{v.Kdi_Terminwunsch}</td>) : (null)}
+       {Stoerungscode === true ? ( <td >{v.Stoerungscode}</td>) : (null)}
+       {Kdi_GebaeudeKomplex === true ? ( <td >{v.Kdi_GebaeudeKomplex}</td>) : (null)}
+       {Kdi_Gebaeude === true ? ( <td >{v.Kdi_Gebaeude}</td>) : (null)}
+       {KDI_WVAnlageArt === true ? ( <td >{v.KDI_WVAnlageArt}</td>) : (null)}
+       {Kunde_Anrede === true ? (<td >{v.Kunde_Anrede}</td>) : (null)}
+       {Kunde_Name1 === true ? ( <td >{v.Kunde_Name1}</td>) : (null)}
+       {Kunde_Name2 === true ? ( <td >{v.Kunde_Name2}</td>) : (null)}
+       {Kunde_Strasse === true ? ( <td >{v.Kunde_Strasse}</td>) : (null)}
+       {Kunde_Landeskennz === true ? ( <td >{v.Kunde_Landeskennz}</td>) : (null)}
+       {Kunde_Postleitzahl === true ? ( <td >{v.Kunde_Postleitzahl}</td>) : (null)}
+       {Kunde_Ort === true ? (<td >{v.Kunde_Ort}</td>) : (null)}
+       {Kdi_BesuchEMail === true ? ( <td >{v.Kdi_BesuchEMail}</td>) : (null)}
+      
+      
+          </tr>
+        )  
+      ))}
+
+      
+
+      
     
-    
-        </tr>
-        
-    ))}
         
         
       </tbody>
@@ -1835,17 +1916,38 @@ const search = async (d) => {
       </Row>
 <br/>
       <div className='text-center'>
-     
-      <p>Seite {currentPage}</p>
-      <ul className='pagination justify-content-center'>
-        {pageNumbers.map(number => (
-          <li key={number}  className={'page-item'}>
-            <a onClick={() => paginate(number)} className={'page-link ' + (number == currentPage ? 'hinter' : 'k')}>
-              {number}
-            </a>
-          </li>
-        ))}
-      </ul>
+        <Row className='text-center justify-content-center'>
+        <Col className='text-center justify-content-center' xs={3} md={1}>
+      <Form.Select onChange={(e => seiten(e))} value={postsPerPage} aria-label="Default select example">
+      <option value="1">1</option>
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+      <option value="30">30</option>
+      <option value="50">50</option>
+      <option value="100">100</option>
+      <option value="alle">Alle</option>
+    </Form.Select>
+    </Col>
+    </Row>
+    <br/>
+    {alle === true ? (null) : (
+      <div>
+    <p>Seite {currentPage}</p>
+    <ul className='pagination justify-content-center'>
+      {pageNumbers.map(number => (
+        <li key={number}  className={'page-item'}>
+          <a onClick={() => paginate(number)} className={'page-link ' + (number == currentPage ? 'hinter' : 'k')}>
+            {number}
+          </a>
+        </li>
+      ))}
+      
+    </ul>
+    </div>
+    )}
+      
     
        
       </div>
