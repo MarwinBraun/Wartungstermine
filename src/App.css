@@ -50,6 +50,13 @@ td{
   cursor: pointer;
 }
 
+.stil{
+  font-size: 25px;
+}
+
+.umrandung{
+  cursor: pointer;
+}
 
 
 @keyframes App-logo-spin {

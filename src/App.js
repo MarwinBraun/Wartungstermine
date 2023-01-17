@@ -9,11 +9,13 @@ import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
+import {useNavigate} from "react-router-dom";
 import bild from  './App_Einstellungen.PNG';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css';
 
 function App() {
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setpostsPerPage] = useState(10);
   const [Daten, setDaten] = useState([]);
@@ -27,7 +29,15 @@ function App() {
   const handleClose = () => setShow(false);
   const handleCloseEdit = () => {setShowEdit(false);};
   const handleShow = () => setShow(true);
-  const handleShowEdit = (k) => { setShowEdit(true); setInputField(false); setCurrentTerminID(k);};
+
+  const handleShowEdit = (k) =>
+   { 
+    if(Rechte === 'admin' || Rechte === 'Bearbeiter'){
+      setShowEdit(true); setInputField(false); setCurrentTerminID(k);
+    }
+   
+  
+  };
   const handleEdit = () => setShowEdit(true);
 
   const handleBestaetigen = async () => {
@@ -128,6 +138,12 @@ function App() {
       setalle(false);
       paginate(1);
     }
+ 
+  }
+
+  const logOut = (e) => {
+    localStorage.removeItem("loginData") 
+    navigate("/dhworld/login");
  
   }
 
@@ -297,9 +313,22 @@ TerminBestaetigungsdatum : TerminBestaetigungsdatum
   const [TerminBestaetigungsdatum, setTerminBestaetigungsdatum] = useState(true);
   const [InputField, setInputField] = useState(false);
   const [TerminID, setCurrentTerminID] = useState(0);
+  const [Rechte, setRechte] = useState('Leser');
 
 
-  useEffect(() => {   
+  useEffect(() => {  
+    
+    if (localStorage.getItem("loginData") == null) {
+            
+      navigate("/dhworld/login");
+      
+    } else{
+      var loginData = localStorage.getItem("loginData");
+      var loginDataparsed = JSON.parse(loginData);
+      setRechte(loginDataparsed.username);
+    
+    }
+
     
     const onLoad = async () => {
       setLoading(true);
@@ -1358,9 +1387,12 @@ const search = async (d) => {
        
             ) : (null)}
          
+         {Rechte === "admin" ? (
           <Button size="lg" variant="danger" onClick={handleDeleteTermin}>
-            Termin löschen
-          </Button>
+          Termin löschen
+        </Button>
+         ) : (null)}
+          
           </div>
 
 ) }
@@ -1724,6 +1756,13 @@ const search = async (d) => {
 </Row>
 ) : ( null) }
 
+<Row>
+ <Col onClick={logOut} xs={{ span: 2, offset: 10}} className="text-center p-3 mb-2 bg-danger text-white umrandung">
+ <i class="bi bi-box-arrow-right stil"></i>  Logout
+ </Col>
+
+</Row>
+
 <Row className="text-center justify-content-center">
   <Col xs={7} md={2}  >
     <h3>DH World</h3><br></br>
@@ -1810,7 +1849,11 @@ const search = async (d) => {
       <tbody>
       {alle === true ? (
         Daten.map((v, index) => (
-          <tr key={index} onClick={() => handleShowEdit(v.ID)}>
+      
+      <tr key={index}  onClick={handleShowEdit(v.ID)}>
+
+     
+      
        {TerminBestaetigungsdatum === true ? ( <td >{v.TerminBestaetigungsdatum}</td>) : (null)}
        {DokumentenNummer === true ? (<td >{v.Dokument_Nummer}</td>) : (null)}
        {Datum_Dokument === true ? ( <td >{v.Datum_Dokument}</td>) : (null)}
