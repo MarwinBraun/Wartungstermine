@@ -129,9 +129,10 @@ function App() {
 
   const seiten = (e) => {
     if(e.target.value === 'alle'){
-      setpostsPerPage(e.target.value);
+      //setpostsPerPage(e.target.value);
       setalle(true);
       paginate(1);
+      currentPosts = Daten;
     }else{
      
       setpostsPerPage(e.target.value);
@@ -456,7 +457,7 @@ TerminBestaetigungsdatum : TerminBestaetigungsdatum
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = Daten.slice(indexOfFirstPost, indexOfLastPost);
+  var currentPosts = Daten.slice(indexOfFirstPost, indexOfLastPost);
 
   // Change page
   const paginate = pageNumber => setCurrentPage(pageNumber);
@@ -1847,57 +1848,10 @@ const search = async (d) => {
         </tr>
       </thead>
       <tbody>
-      {alle === true ? (
-        Daten.map((v, index) => (
+      {
+  
       
-      <tr key={index}  onClick={handleShowEdit(v.ID)}>
-
      
-      
-       {TerminBestaetigungsdatum === true ? ( <td >{v.TerminBestaetigungsdatum}</td>) : (null)}
-       {DokumentenNummer === true ? (<td >{v.Dokument_Nummer}</td>) : (null)}
-       {Datum_Dokument === true ? ( <td >{v.Datum_Dokument}</td>) : (null)}
-       {Zeit_Ersterfassung === true ? ( <td >{v.Zeit_Ersterfassung}</td>) : (null)}
-       {Liefer_AdressNummer === true ? ( <td >{v.Liefer_AdressNummer}</td>) : (null)}
-       {Liefer_Anrede === true ? ( <td >{v.Liefer_Anrede}</td>) : (null)}
-       {Liefer_Name1 === true ? ( <td >{v.Liefer_Name1}</td>) : (null)}
-       {Liefer_Name2 === true ? ( <td >{v.Liefer_Name2}</td>) : (null)}
-       {Liefer_Name3 === true ? ( <td >{v.Liefer_Name3}</td>) : (null)}
-       {Liefer_Tel_LandWahl === true ? ( <td >{v.Liefer_Tel_LandWahl}</td>) : (null)}
-       {Liefer_Tel_Vorwahl === true ? ( <td >{v.Liefer_Tel_Vorwahl}</td>) : (null)}
-       {Liefer_Tel_Rufnummer === true ? ( <td >{v.Liefer_Tel_Rufnummer}</td>) : (null)}
-       {Liefer_Tel_Durchwahl === true ? ( <td >{v.Liefer_Tel_Durchwahl}</td>) : (null)}
-       {DOK_Phase === true ? ( <td >{v.DOK_Phase}</td>) : (null)}
-       {DOK_Disposition_Datum === true ? ( <td >{v.DOK_Disposition_Datum}</td>) : (null)}
-       {DOK_Disposition_Zeit === true ? ( <td >{v.DOK_Disposition_Zeit}</td>) : (null)}
-       {Kdi_Gruppe === true ? ( <td >{v.Kdi_Gruppe}</td>) : (null)}
-       {KdiWartung_VertragNr === true ? ( <td >{v.KdiWartung_VertragNr}</td>) : (null)}
-       {KdiEingang_AnsprPart === true ? ( <td >{v.KdiEingang_AnsprPart}</td>) : (null)}
-       {Kdi_AuftrBeschreibng === true ? ( <td >{v.Kdi_AuftrBeschreibng}</td>) : (null)}
-       {KdiTermin_Datum === true ? ( <td >{v.KdiTermin_Datum}</td>) : (null)}
-       {KdiTermin_Uhrzeit === true ? ( <td >{v.KdiTermin_Uhrzeit}</td>) : (null)}
-       {KdiTermin_BisUhrzeit === true ? ( <td >{v.KdiTermin_BisUhrzeit}</td>) : (null)}
-       {KdiTermin_Dauer === true ? (  <td >{v.KdiTermin_Dauer}</td>) : (null)}
-       {Kdi_RechEMail === true ? ( <td >{v.Kdi_RechEMail}</td>) : (null)}
-       {Kdi_Terminwunsch === true ? ( <td >{v.Kdi_Terminwunsch}</td>) : (null)}
-       {Stoerungscode === true ? ( <td >{v.Stoerungscode}</td>) : (null)}
-       {Kdi_GebaeudeKomplex === true ? ( <td >{v.Kdi_GebaeudeKomplex}</td>) : (null)}
-       {Kdi_Gebaeude === true ? ( <td >{v.Kdi_Gebaeude}</td>) : (null)}
-       {KDI_WVAnlageArt === true ? ( <td >{v.KDI_WVAnlageArt}</td>) : (null)}
-       {Kunde_Anrede === true ? (<td >{v.Kunde_Anrede}</td>) : (null)}
-       {Kunde_Name1 === true ? ( <td >{v.Kunde_Name1}</td>) : (null)}
-       {Kunde_Name2 === true ? ( <td >{v.Kunde_Name2}</td>) : (null)}
-       {Kunde_Strasse === true ? ( <td >{v.Kunde_Strasse}</td>) : (null)}
-       {Kunde_Landeskennz === true ? ( <td >{v.Kunde_Landeskennz}</td>) : (null)}
-       {Kunde_Postleitzahl === true ? ( <td >{v.Kunde_Postleitzahl}</td>) : (null)}
-       {Kunde_Ort === true ? (<td >{v.Kunde_Ort}</td>) : (null)}
-       {Kdi_BesuchEMail === true ? ( <td >{v.Kdi_BesuchEMail}</td>) : (null)}
-      
-      
-          </tr>
-          
-      ))
-      ) : (
         currentPosts.map((v, index) => (
           <tr key={index} onClick={() => handleShowEdit(v.ID)}>
        {TerminBestaetigungsdatum === true ? ( <td >{v.TerminBestaetigungsdatum}</td>) : (null)}
@@ -1942,7 +1896,7 @@ const search = async (d) => {
       
           </tr>
         )  
-      ))}
+      )}
 
       
 
@@ -1970,7 +1924,7 @@ const search = async (d) => {
       <option value="30">30</option>
       <option value="50">50</option>
       <option value="100">100</option>
-      <option value="alle">Alle</option>
+
     </Form.Select>
     </Col>
     </Row>
