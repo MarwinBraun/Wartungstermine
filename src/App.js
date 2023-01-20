@@ -516,7 +516,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.ID = !ID;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -537,7 +537,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.DokumentenNummer = !DokumentenNummer;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -558,7 +558,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.Kunde_Anrede = !Kunde_Anrede;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -579,7 +579,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.Kunde_Name1 = !Kunde_Name1;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -600,7 +600,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.Kunde_Name2 = !Kunde_Name2;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -621,7 +621,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.Kunde_Strasse = !Kunde_Strasse;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -642,7 +642,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.Kunde_Landeskennz = !Kunde_Landeskennz;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -663,7 +663,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.Kunde_Postleitzahl = !Kunde_Postleitzahl;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -684,7 +684,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.Kunde_Ort = !Kunde_Ort;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -705,7 +705,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.Kdi_BesuchEMail = !Kdi_BesuchEMail;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -726,7 +726,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.Datum_Dokument = !Datum_Dokument;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -747,7 +747,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.Liefer_AdressNummer = !Liefer_AdressNummer;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -768,7 +768,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.Liefer_Anrede = !Liefer_Anrede;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -789,7 +789,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.Liefer_Name1 = !Liefer_Name1;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -810,7 +810,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.Liefer_Name2 = !Liefer_Name2;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -831,7 +831,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.Liefer_Name3 = !Liefer_Name3;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -852,7 +852,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.Liefer_Tel_LandWahl = !Liefer_Tel_LandWahl;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -873,7 +873,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.Liefer_Tel_Vorwahl = !Liefer_Tel_Vorwahl;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -894,7 +894,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.Liefer_Tel_Rufnummer = !Liefer_Tel_Rufnummer;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -915,7 +915,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.Liefer_Tel_Durchwahl = !Liefer_Tel_Durchwahl;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -936,7 +936,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.Datum_Ersterfassung = !Datum_Ersterfassung;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -957,7 +957,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.Zeit_Ersterfassung = !Zeit_Ersterfassung;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -978,7 +978,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.DOK_Phase = !DOK_Phase;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -999,7 +999,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.DOK_Disposition_Datum = !DOK_Disposition_Datum;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -1020,7 +1020,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.DOK_Disposition_Zeit = !DOK_Disposition_Zeit;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -1041,7 +1041,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.Kdi_Gruppe = !Kdi_Gruppe;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -1062,7 +1062,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.KdiWartung_VertragNr = !KdiWartung_VertragNr;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -1083,7 +1083,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.KdiEingang_AnsprPart = !KdiEingang_AnsprPart;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -1104,7 +1104,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.Kdi_AuftrBeschreibng = !Kdi_AuftrBeschreibng;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -1125,7 +1125,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.KdiTermin_Datum = !KdiTermin_Datum;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -1146,7 +1146,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.KdiTermin_Uhrzeit = !KdiTermin_Uhrzeit;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -1167,7 +1167,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.KdiTermin_BisUhrzeit = !KdiTermin_BisUhrzeit;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -1188,7 +1188,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.KdiTermin_Dauer = !KdiTermin_Dauer;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -1209,7 +1209,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.Kdi_RechEMail = !Kdi_RechEMail;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -1230,7 +1230,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.Kdi_Terminwunsch = !Kdi_Terminwunsch;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -1251,7 +1251,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.Stoerungscode = !Stoerungscode;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -1272,7 +1272,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.Kdi_GebaeudeKomplex = !Kdi_GebaeudeKomplex;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -1293,7 +1293,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.Kdi_Gebaeude = !Kdi_Gebaeude;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -1314,7 +1314,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.KDI_WVAnlageArt = !KDI_WVAnlageArt;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
@@ -1335,7 +1335,7 @@ const search = async (d) => {
         var einstellungen = localStorage.getItem("settings");
         var parsed = JSON.parse(einstellungen);
         parsed.TerminBestaetigungsdatum = !TerminBestaetigungsdatum;
-        localStorage.clear();
+        localStorage.removeItem("settings");
         localStorage.setItem("settings", JSON.stringify(parsed)); 
 
       }
