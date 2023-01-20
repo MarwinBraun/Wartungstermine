@@ -460,7 +460,10 @@ TerminBestaetigungsdatum : TerminBestaetigungsdatum
   var currentPosts = Daten.slice(indexOfFirstPost, indexOfLastPost);
 
   // Change page
-  const paginate = pageNumber => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo(0, 0);
+  }
 
   const pageNumbers = [];
 
@@ -1765,9 +1768,9 @@ const search = async (d) => {
 </Row>
 
 <Row className="text-center justify-content-center">
-  <Col xs={7} md={2}  >
-    <h3>DH World</h3><br></br>
-  <img className='img-fluid' src={bild}/>
+  <Col xs={7} md={4} lg={3} sm={7}>
+    <h2>DH World</h2><br></br><br></br><br></br>
+  <img className='img-fluid' src={bild}/> <br></br><br></br><br></br>
   </Col>
 </Row>
 <br/>
@@ -1790,7 +1793,19 @@ const search = async (d) => {
   </Col>
  
 </Row>
-<br/>
+<br/> <br></br>
+
+
+{currentPosts.length < 1 ? (
+  <Row className="text-center justify-content-center">
+     <Col xs={12}>
+     <br></br><br></br><br></br><br></br>
+ <h3>Keine Datensätze vorhanden.</h3>
+ </Col>
+ </Row>
+) : (
+
+<div>
 
 <Row className="justify-content-center">
   <Col className="d-grid gap-2" xs={12} md={3}>
@@ -1798,7 +1813,7 @@ const search = async (d) => {
   </Col>
 </Row>
 
-<br/>
+<br/><br></br><br></br>
 
 
 <Row>
@@ -1807,7 +1822,7 @@ const search = async (d) => {
         <Table striped responsive bordered hover>
       <thead>
         <tr>
-        {TerminBestaetigungsdatum === true ? (<th>TerminBestaetigungsdatum</th>) : (null)}
+        {TerminBestaetigungsdatum === true ? (<th>Terminbestätigungsdatum</th>) : (null)}
         {DokumentenNummer === true ? (<th>KDI-Nummer</th>) : (null)}
         {Datum_Dokument === true ? (<th>Anlegedatum</th>) : (null)}
         {Zeit_Ersterfassung === true ? (<th>Anlageuhrzeit</th>) : (null)}
@@ -1911,7 +1926,7 @@ const search = async (d) => {
 
         </Col>
       </Row>
-<br/>
+<br/> <br></br>
       <div className='text-center'>
         <Row className='text-center justify-content-center'>
         <Col className='text-center justify-content-center' xs={3} md={1}>
@@ -1928,10 +1943,11 @@ const search = async (d) => {
     </Form.Select>
     </Col>
     </Row>
-    <br/>
+    <br/> <br></br>
     {alle === true ? (null) : (
       <div>
-    <p>Seite {currentPage}</p>
+  {currentPosts.length >= 1 ? (<p>Seite: {currentPage}</p>) : (null)}
+  <br></br>
     <ul className='pagination justify-content-center'>
       {pageNumbers.map(number => (
         <li key={number}  className={'page-item'}>
@@ -1942,12 +1958,21 @@ const search = async (d) => {
       ))}
       
     </ul>
+   
+    
     </div>
+    
     )}
       
     
        
       </div>
+      <br></br><br></br><br></br><br></br>
+      </div>
+
+)
+
+}
 
      
      
