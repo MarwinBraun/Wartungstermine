@@ -58,6 +58,9 @@ td{
   cursor: pointer;
 }
 
+.bg-successs {
+  background-color: #28a745!important;
+}
 
 @keyframes App-logo-spin {
   from {

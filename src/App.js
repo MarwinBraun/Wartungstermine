@@ -1853,7 +1853,7 @@ const search = async (d) => {
       
      
         currentPosts.map((v, index) => (
-          <tr key={index} onClick={() => handleShowEdit(v.ID)}>
+        <tr className={(v.TerminBestaetigungsdatum !== '' ? 'p-3 mb-2 bg-successs' : '')} key={index} onClick={() => handleShowEdit(v.ID)}>
        {TerminBestaetigungsdatum === true ? ( <td >{v.TerminBestaetigungsdatum}</td>) : (null)}
        {DokumentenNummer === true ? (<td >{v.Dokument_Nummer}</td>) : (null)}
        {Datum_Dokument === true ? ( <td >{v.Datum_Dokument}</td>) : (null)}

@@ -1,4 +1,4 @@
-import React, {useEffect } from 'react';
+import React, {useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -10,36 +10,36 @@ import '../App.css';
 
 const Bestaetigt = () => {
 
+  const [bes, setbes] = useState(false);
+
     var { id } = useParams();
 
-    useEffect(() => {
+    
+    const onLoad = async () => {
+      try {
+              const res = await axios.get('http://mail.dietenmeier-harsch.de:81/done.php', {
+              params: { id: id}, 
+              
+              
+              });
+              
+              
         
-        const onLoad = async () => {
-            try {
-                    const res = await axios.get('http://mail.dietenmeier-harsch.de:81/bestaetigen.php', {
-                    params: { id: id}, 
-                    
-                    
-                    });
-                    
-                    
+             let response = res.data.best;
+             
+             setbes(true);
+             
+            } catch (err) {
+              if (err.response.status === 500) {
+                alert('There was a problem with the server');
+              } else {
+                alert(err.response.data.msg);
+              }
               
-                   let response = res.data.best;
-                   
-              
-                   
-                  } catch (err) {
-                    if (err.response.status === 500) {
-                      alert('There was a problem with the server');
-                    } else {
-                      alert(err.response.data.msg);
-                    }
-                    
-                  } 
-                }
-                
-                onLoad();
-    });
+            } 
+          }
+
+ 
 
   return (
     <Container>
@@ -54,13 +54,30 @@ const Bestaetigt = () => {
 
 <Row>
     <Col xs={12} className="text-center">
-    <i className="bi bi-check-circle bigger"></i>
-    <br></br><br></br>
-    <b>Vielen Dank für Ihre Bestätigung!</b> <br></br><br></br>
+ 
+    {bes === false ? ( 
+     <div>
+      <br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+    <h4>Bitte klicken Sie auf den Button, um Ihren Termin zu bestätigen.</h4><br></br>
+    <div class="d-grid col-md-3 col-5 mx-auto"><button onClick={onLoad} type="button" class="btn btn-success">Bestätigen</button></div>
+    </div>
+    )
+     : (
+        <div>
+  <i className="bi bi-check-circle bigger"></i>
+  <br></br><br></br>
+  <b>Vielen Dank für Ihre Bestätigung!</b> <br></br><br></br>
 
-Unser Servicetechniker wird zur angegebenen Zeit zu Ihnen kommen und die Wartung durchführen. <br></br><br></br>
+<p>Unser Servicetechniker wird zur angegebenen Zeit zu Ihnen kommen und die Wartung durchführen. <br></br><br></br>
 
 Sollten Sie noch Fragen haben, zögern Sie bitte nicht, sich über <a href="mailto:info@dietenmeier-harsch.de">info@dietenmeier-harsch.de</a> an uns zu wenden. Sie können das Fenster nun schließen. <br></br><br></br>
+  
+</p>
+</div>
+    )}
+
+
+  
     </Col>
 </Row>
 
