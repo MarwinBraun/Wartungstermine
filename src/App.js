@@ -53,7 +53,12 @@ function App() {
 
       
       handleCloseEdit();
+      var d = Daten;
+      var p = currentPage;
       Load();
+      
+      currentPosts = d;
+      setCurrentPage(p);
       setLoadingModal(false);
      
     } catch (err) {
@@ -86,6 +91,10 @@ function App() {
     
       handleCloseEdit();
       Load();
+      var d = Daten;
+      var p = currentPage;
+      currentPosts = d;
+      setCurrentPage(p);
       setLoadingModal(false);
      
     } catch (err) {
@@ -114,6 +123,10 @@ function App() {
     
       handleCloseEdit();
       Load();
+      var d = Daten;
+      var p = currentPage;
+      currentPosts = d;
+      setCurrentPage(p);
       setLoadingModal(false);
      
     } catch (err) {
@@ -476,11 +489,13 @@ const search = async (d) => {
   setLoading(true);
   
   var val = d.target.value;
+  var vall = val.replaceAll("'", "");
+
 
  
     try {
         const res = await axios.get('http://mail.dietenmeier-harsch.de:81/autocomplete.php',  {
-          params: {val: val}
+          params: {val: vall}
         
         });
         
