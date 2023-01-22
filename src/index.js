@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import Bestaetigt from './components/Bestaetigt';
 import Login from './components/Login';
+import NotFound from './components/NotFound';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
 import $ from 'jquery';
@@ -21,7 +22,8 @@ root.render(
 
     <BrowserRouter>
       <Routes>
-        <Route path="/dhworld" element={<App />} />
+          <Route path="/" element={ <NotFound/> }/>
+          <Route path="/dhworld" element={<App />} />
           <Route path="/dhworld/bestaetigt/:id" element={<Bestaetigt />} />
           <Route path="/dhworld/login" element={<Login />} />
       </Routes>

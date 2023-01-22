@@ -43,7 +43,7 @@ function App() {
   const handleBestaetigen = async () => {
     setLoadingModal(true);
     try {
-      const res = await axios.get('http://mail.dietenmeier-harsch.de:81/Neubestaetigen.php', {
+      const res = await axios.get('https://dhworld.dietenmeier-harsch.de/Neubestaetigen.php', {
         params: { TerminID: TerminID}, 
         
       
@@ -80,7 +80,7 @@ function App() {
   const handleDeleteTermin = async () => {
     setLoadingModal(true);
     try {
-      const res = await axios.get('http://mail.dietenmeier-harsch.de:81/delete.php', {
+      const res = await axios.get('https://dhworld.dietenmeier-harsch.de/delete.php', {
         params: { TerminID: TerminID}, 
         
       
@@ -112,7 +112,7 @@ function App() {
     setLoadingModal(true);
     
     try {
-      const res = await axios.get('http://mail.dietenmeier-harsch.de:81/Selbstbestaetigung.php', {
+      const res = await axios.get('https://dhworld.dietenmeier-harsch.de/Selbstbestaetigung.php', {
         params: { TerminID: TerminID, InputData: InputData}, 
         
       
@@ -260,7 +260,7 @@ TerminBestaetigungsdatum : TerminBestaetigungsdatum
 
 
     try {
-      const res = await axios.get('http://mail.dietenmeier-harsch.de:81/load.php', {
+      const res = await axios.get('https://dhworld.dietenmeier-harsch.de/load.php', {
         
       
       });
@@ -443,7 +443,7 @@ TerminBestaetigungsdatum : TerminBestaetigungsdatum
 
 
       try {
-        const res = await axios.get('http://mail.dietenmeier-harsch.de:81/load.php', {
+        const res = await axios.get('https://dhworld.dietenmeier-harsch.de/load.php', {
           
         
         });
@@ -494,7 +494,7 @@ const search = async (d) => {
 
  
     try {
-        const res = await axios.get('http://mail.dietenmeier-harsch.de:81/autocomplete.php',  {
+        const res = await axios.get('https://dhworld.dietenmeier-harsch.de/autocomplete.php',  {
           params: {val: vall}
         
         });
