@@ -24,16 +24,158 @@ function App() {
   const [show, setShow] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [alle, setalle] = useState(false);
+  const [v_TerminBestaetigungsdatum, setv_TerminBestaetigungsdatum] = useState('');
+  const [v_Dokument_Nummer, setv_Dokument_Nummer] = useState('');
+  const [v_Datum_Dokument, setv_Datum_Dokument] = useState('');
+  const [v_Zeit_Ersterfassung, setv_Zeit_Ersterfassung] = useState('');
+  const [v_Liefer_AdressNummer, setv_Liefer_AdressNummer] = useState('');
+  const [v_Liefer_Anrede, setv_Liefer_Anrede] = useState('');
+  const [v_Liefer_Name1, setv_Liefer_Name1] = useState('');
+  const [v_Liefer_Name2, setv_Liefer_Name2] = useState('');
+  const [v_Liefer_Name3, setv_Liefer_Name3] = useState('');
+  const [v_Liefer_Tel_LandWahl, setv_Liefer_Tel_LandWahl] = useState('');
+  const [v_Liefer_Tel_Vorwahl, setv_Liefer_Tel_Vorwahl] = useState('');
+  const [v_Liefer_Tel_Rufnummer, setv_Liefer_Tel_Rufnummer] = useState('');
+  const [v_Liefer_Tel_Durchwahl, setv_Liefer_Tel_Durchwahl] = useState('');
+  const [v_DOK_Phase, setv_DOK_Phase] = useState('');
+  const [v_DOK_Disposition_Datum, setv_DOK_Disposition_Datum] = useState('');
+  const [v_DOK_Disposition_Zeit, setv_DOK_Disposition_Zeit] = useState('');
+  const [v_Kdi_Gruppe, setv_Kdi_Gruppe] = useState('');
+  const [v_KdiWartung_VertragNr, setv_KdiWartung_VertragNr] = useState('');
+  const [v_KdiEingang_AnsprPart, setv_KdiEingang_AnsprPart] = useState('');
+  const [v_Kdi_AuftrBeschreibng, setv_Kdi_AuftrBeschreibng] = useState('');
+  const [v_KdiTermin_Datum, setv_KdiTermin_Datum] = useState('');
+  const [v_KdiTermin_Uhrzeit, setv_KdiTermin_Uhrzeit] = useState('');
+  const [v_KdiTermin_BisUhrzeit, setv_KdiTermin_BisUhrzeit] = useState('');
+  const [v_KdiTermin_Dauer, setv_KdiTermin_Dauer] = useState('');
+  const [v_Kdi_RechEMail, setv_Kdi_RechEMail] = useState('');
+  const [v_Kdi_Terminwunsch, setv_Kdi_Terminwunsch] = useState('');
+  const [v_Stoerungscode, setv_Stoerungscode] = useState('');
+  const [v_Kdi_GebaeudeKomplex, setv_Kdi_GebaeudeKomplex] = useState('');
+  const [v_Kdi_Gebaeude, setv_Kdi_Gebaeude] = useState('');
+  const [v_KDI_WVAnlageArt, setv_KDI_WVAnlageArt] = useState('');
+  const [v_Kunde_Anrede, setv_Kunde_Anrede] = useState('');
+  const [v_Kunde_Name1, setv_Kunde_Name1] = useState('');
+  const [v_Kunde_Name2, setv_Kunde_Name2] = useState('');
+  const [v_Kunde_Strasse, setv_Kunde_Strasse] = useState('');
+  const [v_Kunde_Landeskennz, setv_Kunde_Landeskennz] = useState('');
+  const [v_Kunde_Postleitzahl, setv_Kunde_Postleitzahl] = useState('');
+  const [v_Kunde_Ort, setv_Kunde_Ort] = useState('');
+  const [v_Kdi_BesuchEMail, setv_Kdi_BesuchEMail] = useState('');
+  const [v_Liefer_Strasse, setv_Liefer_Strasse] = useState('');
+  const [v_Liefer_Postleitzahl, setv_Liefer_Postleitzahl] = useState('');
+  const [v_Liefer_Ort, setv_Liefer_Ort] = useState('');
+  const [v_Kunde_Tel_LandWahl, setv_Kunde_Tel_LandWahl] = useState('');
+  const [v_Kunde_Tel_Vorwahl, setv_Kunde_Tel_Vorwahl] = useState('');
+  const [v_Kunde_Tel_Rufnummer, setv_Kunde_Tel_Rufnummer] = useState('');
+  const [v_Kunde_Tel_Durchwahl, setv_Kunde_Tel_Durchwahl ] = useState('');
   const [InputData, setInputData] = useState('');
+  const [Laden, setLaden] = useState(false);
+ 
 
   const handleClose = () => setShow(false);
   const handleCloseEdit = () => {setShowEdit(false);};
   const handleShow = () => setShow(true);
 
-  const handleShowEdit = (k) =>
+  const handleShowEdit = (ID,
+    v_TerminBestaetigungsdatum,
+v_Dokument_Nummer,
+v_Datum_Dokument,
+v_Zeit_Ersterfassung,
+v_Liefer_AdressNummer,
+v_Liefer_Anrede,
+v_Liefer_Name1,
+v_Liefer_Name2,
+v_Liefer_Name3,
+v_Liefer_Tel_LandWahl,
+v_Liefer_Tel_Vorwahl,
+v_Liefer_Tel_Rufnummer,
+v_Liefer_Tel_Durchwahl,
+v_DOK_Phase,
+v_DOK_Disposition_Datum,
+v_DOK_Disposition_Zeit,
+v_Kdi_Gruppe,
+v_KdiWartung_VertragNr,
+v_KdiEingang_AnsprPart,
+v_Kdi_AuftrBeschreibng,
+v_KdiTermin_Datum,
+v_KdiTermin_Uhrzeit,
+v_KdiTermin_BisUhrzeit,
+v_KdiTermin_Dauer,
+v_Kdi_RechEMail,
+v_Kdi_Terminwunsch,
+v_Stoerungscode,
+v_Kdi_GebaeudeKomplex,
+v_Kdi_Gebaeude,
+v_KDI_WVAnlageArt,
+v_Kunde_Anrede,
+v_Kunde_Name1,
+v_Kunde_Name2,
+v_Kunde_Strasse,
+v_Kunde_Landeskennz,
+v_Kunde_Postleitzahl,
+v_Kunde_Ort,
+v_Kdi_BesuchEMail,
+v_Liefer_Strasse,
+v_Liefer_Postleitzahl,
+v_Liefer_Ort,
+v_Kunde_Tel_LandWahl,
+v_Kunde_Tel_Vorwahl,
+v_Kunde_Tel_Rufnummer,
+v_Kunde_Tel_Durchwahl
+    
+    
+    
+    ) =>
    { 
     if(Rechte === 'admin' || Rechte === 'Bearbeiter'){
-      setShowEdit(true); setInputField(false); setCurrentTerminID(k);
+      setShowEdit(true); setInputField(false); 
+      setCurrentTerminID(ID);
+      setv_TerminBestaetigungsdatum(v_TerminBestaetigungsdatum);
+setv_Dokument_Nummer(v_Dokument_Nummer);
+setv_Datum_Dokument(v_Datum_Dokument);
+setv_Zeit_Ersterfassung(v_Zeit_Ersterfassung);
+setv_Liefer_AdressNummer(v_Liefer_AdressNummer);
+setv_Liefer_Anrede(v_Liefer_Anrede);
+setv_Liefer_Name1(v_Liefer_Name1);
+setv_Liefer_Name2(v_Liefer_Name2);
+setv_Liefer_Name3(v_Liefer_Name3);
+setv_Liefer_Tel_LandWahl(v_Liefer_Tel_LandWahl);
+setv_Liefer_Tel_Vorwahl(v_Liefer_Tel_Vorwahl);
+setv_Liefer_Tel_Rufnummer(v_Liefer_Tel_Rufnummer);
+setv_Liefer_Tel_Durchwahl(v_Liefer_Tel_Durchwahl);
+setv_DOK_Phase(v_DOK_Phase);
+setv_DOK_Disposition_Datum(v_DOK_Disposition_Datum);
+setv_DOK_Disposition_Zeit(v_DOK_Disposition_Zeit);
+setv_Kdi_Gruppe(v_Kdi_Gruppe);
+setv_KdiWartung_VertragNr(v_KdiWartung_VertragNr);
+setv_KdiEingang_AnsprPart(v_KdiEingang_AnsprPart);
+setv_Kdi_AuftrBeschreibng(v_Kdi_AuftrBeschreibng);
+setv_KdiTermin_Datum(v_KdiTermin_Datum);
+setv_KdiTermin_Uhrzeit(v_KdiTermin_Uhrzeit);
+setv_KdiTermin_BisUhrzeit(v_KdiTermin_BisUhrzeit);
+setv_KdiTermin_Dauer(v_KdiTermin_Dauer);
+setv_Kdi_RechEMail(v_Kdi_RechEMail);
+setv_Kdi_Terminwunsch(v_Kdi_Terminwunsch);
+setv_Stoerungscode(v_Stoerungscode);
+setv_Kdi_GebaeudeKomplex(v_Kdi_GebaeudeKomplex);
+setv_Kdi_Gebaeude(v_Kdi_Gebaeude);
+setv_KDI_WVAnlageArt(v_KDI_WVAnlageArt);
+setv_Kunde_Anrede(v_Kunde_Anrede);
+setv_Kunde_Name1(v_Kunde_Name1);
+setv_Kunde_Name2(v_Kunde_Name2);
+setv_Kunde_Strasse(v_Kunde_Strasse);
+setv_Kunde_Postleitzahl(v_Kunde_Postleitzahl);
+setv_Kunde_Ort(v_Kunde_Ort);
+setv_Kdi_BesuchEMail(v_Kdi_BesuchEMail);
+setv_Liefer_Strasse(v_Liefer_Strasse);
+setv_Liefer_Postleitzahl(v_Liefer_Postleitzahl);
+setv_Liefer_Ort(v_Liefer_Ort);
+setv_Kunde_Tel_LandWahl(v_Kunde_Tel_LandWahl);
+setv_Kunde_Tel_Vorwahl(v_Kunde_Tel_Vorwahl);
+setv_Kunde_Tel_Rufnummer(v_Kunde_Tel_Rufnummer);
+setv_Kunde_Tel_Durchwahl(v_Kunde_Tel_Durchwahl);
+
     }
    
   
@@ -207,6 +349,13 @@ setKdi_GebaeudeKomplex(parsed.Kdi_GebaeudeKomplex);
 setKdi_Gebaeude(parsed.Kdi_Gebaeude);
 setKDI_WVAnlageArt(parsed.KDI_WVAnlageArt);
 setTerminBestaetigungsdatum(parsed.TerminBestaetigungsdatum);
+setLiefer_Strasse(parsed.Liefer_Strasse);
+setLiefer_Postleitzahl(parsed.Liefer_Postleitzahl);
+setLiefer_Ort(parsed.Liefer_Ort);
+setKunde_Tel_LandWahl(parsed.Kunde_Tel_LandWahl);
+setKunde_Tel_Vorwahl(parsed.Kunde_Tel_Vorwahl);
+setKunde_Tel_Rufnummer(parsed.Kunde_Tel_Rufnummer);
+setKunde_Tel_Durchwahl(parsed.Kunde_Tel_Durchwahl);
 
 
       
@@ -251,7 +400,16 @@ Stoerungscode : Stoerungscode,
 Kdi_GebaeudeKomplex : Kdi_GebaeudeKomplex,
 Kdi_Gebaeude : Kdi_Gebaeude,
 KDI_WVAnlageArt : KDI_WVAnlageArt, 
-TerminBestaetigungsdatum : TerminBestaetigungsdatum
+TerminBestaetigungsdatum : TerminBestaetigungsdatum,
+Liefer_Strasse : Liefer_Strasse,
+Liefer_Postleitzahl : Liefer_Postleitzahl,
+Liefer_Ort : Liefer_Ort,
+Kunde_Tel_LandWahl : Kunde_Tel_LandWahl,
+Kunde_Tel_Vorwahl : Kunde_Tel_Vorwahl,
+Kunde_Tel_Rufnummer : Kunde_Tel_Rufnummer,
+Kunde_Tel_Durchwahl : Kunde_Tel_Durchwahl,
+
+
         
       }
      
@@ -328,6 +486,13 @@ TerminBestaetigungsdatum : TerminBestaetigungsdatum
   const [InputField, setInputField] = useState(false);
   const [TerminID, setCurrentTerminID] = useState(0);
   const [Rechte, setRechte] = useState('Leser');
+  const [Liefer_Strasse, setLiefer_Strasse] = useState(true);
+  const [Liefer_Postleitzahl, setLiefer_Postleitzahl] = useState(true);
+  const [Liefer_Ort, setLiefer_Ort] = useState(true);
+  const [Kunde_Tel_LandWahl, setKunde_Tel_LandWahl] = useState(true);
+  const [Kunde_Tel_Vorwahl, setKunde_Tel_Vorwahl] = useState(true);
+  const [Kunde_Tel_Rufnummer, setKunde_Tel_Rufnummer] = useState(true);
+  const [Kunde_Tel_Durchwahl, setKunde_Tel_Durchwahl] = useState(true);
 
 
   useEffect(() => {  
@@ -390,6 +555,13 @@ setKdi_GebaeudeKomplex(parsed.Kdi_GebaeudeKomplex);
 setKdi_Gebaeude(parsed.Kdi_Gebaeude);
 setKDI_WVAnlageArt(parsed.KDI_WVAnlageArt);
 setTerminBestaetigungsdatum(parsed.TerminBestaetigungsdatum);
+setLiefer_Strasse(parsed.Liefer_Strasse);
+setLiefer_Postleitzahl(parsed.Liefer_Postleitzahl);
+setLiefer_Ort(parsed.Liefer_Ort);
+setKunde_Tel_LandWahl(parsed.Kunde_Tel_LandWahl);
+setKunde_Tel_Vorwahl(parsed.Kunde_Tel_Vorwahl);
+setKunde_Tel_Rufnummer(parsed.Kunde_Tel_Rufnummer);
+setKunde_Tel_Durchwahl(parsed.Kunde_Tel_Durchwahl);
 
 
         
@@ -434,7 +606,14 @@ Stoerungscode : Stoerungscode,
 Kdi_GebaeudeKomplex : Kdi_GebaeudeKomplex,
 Kdi_Gebaeude : Kdi_Gebaeude,
 KDI_WVAnlageArt : KDI_WVAnlageArt, 
-TerminBestaetigungsdatum : TerminBestaetigungsdatum
+TerminBestaetigungsdatum : TerminBestaetigungsdatum,
+Liefer_Strasse : Liefer_Strasse,
+Liefer_Postleitzahl : Liefer_Postleitzahl,
+Liefer_Ort : Liefer_Ort,
+Kunde_Tel_LandWahl : Kunde_Tel_LandWahl,
+Kunde_Tel_Vorwahl : Kunde_Tel_Vorwahl,
+Kunde_Tel_Rufnummer : Kunde_Tel_Rufnummer,
+Kunde_Tel_Durchwahl : Kunde_Tel_Durchwahl,
           
         }
        
@@ -1359,9 +1538,240 @@ const search = async (d) => {
       }
     }
 
+    if(bez === 'Liefer_Strasse'){
+      setLiefer_Strasse(!Liefer_Strasse);
+      if (localStorage.getItem("settings") === null) {
+
+        var obj = {
+          Liefer_Strasse: !Liefer_Strasse
+        }
+       
+        localStorage.setItem("settings", JSON.stringify(obj)); 
+
+      } else {
+        var einstellungen = localStorage.getItem("settings");
+        var parsed = JSON.parse(einstellungen);
+        parsed.Liefer_Strasse = !Liefer_Strasse;
+        localStorage.removeItem("settings");
+        localStorage.setItem("settings", JSON.stringify(parsed)); 
+
+      }
+    }
+
+    if(bez === 'Liefer_Postleitzahl'){
+      setLiefer_Postleitzahl(!Liefer_Postleitzahl);
+      if (localStorage.getItem("settings") === null) {
+
+        var obj = {
+          Liefer_Postleitzahl: !Liefer_Postleitzahl
+        }
+       
+        localStorage.setItem("settings", JSON.stringify(obj)); 
+
+      } else {
+        var einstellungen = localStorage.getItem("settings");
+        var parsed = JSON.parse(einstellungen);
+        parsed.Liefer_Postleitzahl = !Liefer_Postleitzahl;
+        localStorage.removeItem("settings");
+        localStorage.setItem("settings", JSON.stringify(parsed)); 
+
+      }
+    }
+
+    if(bez === 'Liefer_Ort'){
+      setLiefer_Ort(!Liefer_Ort);
+      if (localStorage.getItem("settings") === null) {
+
+        var obj = {
+          Liefer_Ort: !Liefer_Ort
+        }
+       
+        localStorage.setItem("settings", JSON.stringify(obj)); 
+
+      } else {
+        var einstellungen = localStorage.getItem("settings");
+        var parsed = JSON.parse(einstellungen);
+        parsed.Liefer_Ort = !Liefer_Ort;
+        localStorage.removeItem("settings");
+        localStorage.setItem("settings", JSON.stringify(parsed)); 
+
+      }
+    }
+
+    if(bez === 'Kunde_Tel_LandWahl'){
+      setKunde_Tel_LandWahl(!Kunde_Tel_LandWahl);
+      if (localStorage.getItem("settings") === null) {
+
+        var obj = {
+          Kunde_Tel_LandWahl: !Kunde_Tel_LandWahl
+        }
+       
+        localStorage.setItem("settings", JSON.stringify(obj)); 
+
+      } else {
+        var einstellungen = localStorage.getItem("settings");
+        var parsed = JSON.parse(einstellungen);
+        parsed.Kunde_Tel_LandWahl = !Kunde_Tel_LandWahl;
+        localStorage.removeItem("settings");
+        localStorage.setItem("settings", JSON.stringify(parsed)); 
+
+      }
+    }
+
+    if(bez === 'Kunde_Tel_Vorwahl'){
+      setKunde_Tel_Vorwahl(!Kunde_Tel_Vorwahl);
+      if (localStorage.getItem("settings") === null) {
+
+        var obj = {
+          Kunde_Tel_Vorwahl: !Kunde_Tel_Vorwahl
+        }
+       
+        localStorage.setItem("settings", JSON.stringify(obj)); 
+
+      } else {
+        var einstellungen = localStorage.getItem("settings");
+        var parsed = JSON.parse(einstellungen);
+        parsed.Kunde_Tel_Vorwahl = !Kunde_Tel_Vorwahl;
+        localStorage.removeItem("settings");
+        localStorage.setItem("settings", JSON.stringify(parsed)); 
+
+      }
+    }
+
+    if(bez === 'Kunde_Tel_Rufnummer'){
+      setKunde_Tel_Rufnummer(!Kunde_Tel_Rufnummer);
+      if (localStorage.getItem("settings") === null) {
+
+        var obj = {
+          Kunde_Tel_Rufnummer: !Kunde_Tel_Rufnummer
+        }
+       
+        localStorage.setItem("settings", JSON.stringify(obj)); 
+
+      } else {
+        var einstellungen = localStorage.getItem("settings");
+        var parsed = JSON.parse(einstellungen);
+        parsed.Kunde_Tel_Rufnummer = !Kunde_Tel_Rufnummer;
+        localStorage.removeItem("settings");
+        localStorage.setItem("settings", JSON.stringify(parsed)); 
+
+      }
+    }
+
+    if(bez === 'Kunde_Tel_Durchwahl'){
+      setKunde_Tel_Durchwahl(!Kunde_Tel_Durchwahl);
+      if (localStorage.getItem("settings") === null) {
+
+        var obj = {
+          Kunde_Tel_Durchwahl: !Kunde_Tel_Durchwahl
+        }
+       
+        localStorage.setItem("settings", JSON.stringify(obj)); 
+
+      } else {
+        var einstellungen = localStorage.getItem("settings");
+        var parsed = JSON.parse(einstellungen);
+        parsed.Kunde_Tel_Durchwahl = !Kunde_Tel_Durchwahl;
+        localStorage.removeItem("settings");
+        localStorage.setItem("settings", JSON.stringify(parsed)); 
+
+      }
+    }
 
 
 
+
+  }
+
+  const [showSpaltenWerte, setshowSpaltenWerte] = useState(false);
+  const handleCloseSpaltenWerte = () => setshowSpaltenWerte(false);
+  const handleShowSpaltenWerte = () => setshowSpaltenWerte(true);
+
+  const editSpaltenWerte = () => {
+
+    handleShowSpaltenWerte(); 
+    handleCloseEdit();
+  }
+
+  const handleCloseSpeichern = async () => {
+    setLaden(true);
+    var params = {
+      TerminID: TerminID, 
+      v_Dokument_Nummer: v_Dokument_Nummer,
+      v_TerminBestaetigungsdatum: v_TerminBestaetigungsdatum,
+      v_Datum_Dokument: v_Datum_Dokument,
+      v_Zeit_Ersterfassung: v_Zeit_Ersterfassung,
+      v_Liefer_AdressNummer: v_Liefer_AdressNummer,
+      v_Liefer_Anrede: v_Liefer_Anrede,
+      v_Liefer_Name1: v_Liefer_Name1,
+      v_Liefer_Name2: v_Liefer_Name2,
+      v_Liefer_Name3: v_Liefer_Name3,
+      v_Liefer_Tel_LandWahl: v_Liefer_Tel_LandWahl,
+      v_Liefer_Tel_Vorwahl: v_Liefer_Tel_Vorwahl,
+      v_Liefer_Tel_Rufnummer: v_Liefer_Tel_Rufnummer,
+      v_Liefer_Tel_Durchwahl: v_Liefer_Tel_Durchwahl,
+      v_DOK_Phase: v_DOK_Phase,
+      v_DOK_Disposition_Datum: v_DOK_Disposition_Datum,
+      v_DOK_Disposition_Zeit: v_DOK_Disposition_Zeit,
+      v_Kdi_Gruppe: v_Kdi_Gruppe,
+      v_KdiWartung_VertragNr: v_KdiWartung_VertragNr,
+      v_KdiEingang_AnsprPart: v_KdiEingang_AnsprPart,
+      v_Kdi_AuftrBeschreibng: v_Kdi_AuftrBeschreibng,
+      v_KdiTermin_Datum: v_KdiTermin_Datum,
+      v_KdiTermin_Uhrzeit: v_KdiTermin_Uhrzeit,
+      v_KdiTermin_BisUhrzeit: v_KdiTermin_BisUhrzeit,
+      v_KdiTermin_Dauer: v_KdiTermin_Dauer,
+      v_Kdi_RechEMail: v_Kdi_RechEMail,
+      v_Kdi_Terminwunsch: v_Kdi_Terminwunsch,
+      v_Stoerungscode: v_Stoerungscode,
+      v_Kdi_GebaeudeKomplex: v_Kdi_GebaeudeKomplex,
+      v_Kdi_Gebaeude: v_Kdi_Gebaeude,
+      v_KDI_WVAnlageArt: v_KDI_WVAnlageArt,
+      v_Kunde_Anrede: v_Kunde_Anrede,
+      v_Kunde_Name1: v_Kunde_Name1,
+      v_Kunde_Name2: v_Kunde_Name2,
+      v_Kunde_Strasse: v_Kunde_Strasse,
+      v_Kunde_Landeskennz: v_Kunde_Landeskennz,
+      v_Kunde_Postleitzahl: v_Kunde_Postleitzahl,
+      v_Kunde_Ort: v_Kunde_Ort,
+      v_Kdi_BesuchEMail: v_Kdi_BesuchEMail,
+      v_Liefer_Strasse: v_Liefer_Strasse,
+      v_Liefer_Postleitzahl: v_Liefer_Postleitzahl,
+      v_Liefer_Ort: v_Liefer_Ort,
+      v_Kunde_Tel_LandWahl: v_Kunde_Tel_LandWahl,
+      v_Kunde_Tel_Vorwahl: v_Kunde_Tel_Vorwahl,
+      v_Kunde_Tel_Rufnummer: v_Kunde_Tel_Rufnummer,
+      v_Kunde_Tel_Durchwahl: v_Kunde_Tel_Durchwahl
+
+      
+  }
+    try {
+      const res = await axios.post('https://dhworld.dietenmeier-harsch.de/Edit.php', params).then(function(response) {
+      
+      
+      });
+      
+      
+
+      Load();
+      handleCloseSpaltenWerte();
+      setLaden(false);
+      
+     
+    
+      
+     
+    } catch (err) {
+      if (err.response.status === 500) {
+        alert('There was a problem with the server');
+      } else {
+        alert(err.response.data.msg);
+      }
+      
+    }
+
+
+   
   }
 
 
@@ -1370,6 +1780,261 @@ const search = async (d) => {
 
     
     <Container>
+
+<Modal show={showSpaltenWerte} onHide={handleCloseSpaltenWerte}>
+        <Modal.Header closeButton>
+          <Modal.Title>Werte anpassen</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        {Laden === true ? (
+ <Row>
+ <Col  xs={12} className="text-center">
+ <Spinner animation="border" variant="primary" />
+ </Col>
+
+</Row>
+) : (
+
+        <Form>
+             <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+              
+               <Col sm="12">
+                 <span>ID</span> <br></br>
+                 <Form.Control onChange={(e) => setCurrentTerminID(e.target.value)} value={TerminID} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Terminbestätigungsdatum</span> <br></br>
+                 <Form.Control onChange={(e) => setv_TerminBestaetigungsdatum(e.target.value)} value={v_TerminBestaetigungsdatum} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>KDI-Nummer</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Dokument_Nummer(e.target.value)} value={v_Dokument_Nummer} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Datum Dokument</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Datum_Dokument(e.target.value)} value={v_Datum_Dokument} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Zeit Ersterfassung</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Zeit_Ersterfassung(e.target.value)} value={v_Zeit_Ersterfassung} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Kundennummer</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Liefer_AdressNummer(e.target.value)} value={v_Liefer_AdressNummer} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Liefer_Anrede</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Liefer_Anrede(e.target.value)} value={v_Liefer_Anrede} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Liefer_Name1</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Liefer_Name1(e.target.value)} value={v_Liefer_Name1} type="text" /> <br></br>
+               </Col>
+               
+               <Col sm="12">
+                 <span>Liefer_Name2</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Liefer_Name2(e.target.value)} value={v_Liefer_Name2} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Liefer_Name3</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Liefer_Name3(e.target.value)} value={v_Liefer_Name3} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Liefer_Tel_LandWahl</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Liefer_Tel_LandWahl(e.target.value)} value={v_Liefer_Tel_LandWahl} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Liefer_Tel_Vorwahl</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Liefer_Tel_Vorwahl(e.target.value)} value={v_Liefer_Tel_Vorwahl} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Liefer_Tel_Rufnummer</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Liefer_Tel_Rufnummer(e.target.value)} value={v_Liefer_Tel_Rufnummer} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Liefer_Tel_Durchwahl</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Liefer_Tel_Durchwahl(e.target.value)} value={v_Liefer_Tel_Durchwahl} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>_DOK_Phase</span> <br></br>
+                 <Form.Control onChange={(e) => setv_DOK_Phase(e.target.value)} value={v_DOK_Phase} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>DOK_Disposition_Datum</span> <br></br>
+                 <Form.Control onChange={(e) => setv_DOK_Disposition_Datum(e.target.value)} value={v_DOK_Disposition_Datum} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>DOK_Disposition_Zeit</span> <br></br>
+                 <Form.Control onChange={(e) => setv_DOK_Disposition_Zeit(e.target.value)} value={v_DOK_Disposition_Zeit} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Kdi_Gruppe</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Kdi_Gruppe(e.target.value)} value={v_Kdi_Gruppe} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>KdiWartung_VertragNr</span> <br></br>
+                 <Form.Control onChange={(e) => setv_KdiWartung_VertragNr(e.target.value)} value={v_KdiWartung_VertragNr} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>KdiEingang_AnsprPart</span> <br></br>
+                 <Form.Control onChange={(e) => setv_KdiEingang_AnsprPart(e.target.value)} value={v_KdiEingang_AnsprPart} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Kdi_AuftrBeschreibng</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Kdi_AuftrBeschreibng(e.target.value)} value={v_Kdi_AuftrBeschreibng} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>KdiTermin_Datum</span> <br></br>
+                 <Form.Control onChange={(e) => setv_KdiTermin_Datum(e.target.value)} value={v_KdiTermin_Datum} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>KdiTermin_Uhrzeit</span> <br></br>
+                 <Form.Control onChange={(e) => setv_KdiTermin_Uhrzeit(e.target.value)} value={v_KdiTermin_Uhrzeit} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>KdiTermin_BisUhrzeit</span> <br></br>
+                 <Form.Control onChange={(e) => setv_KdiTermin_BisUhrzeit(e.target.value)} value={v_KdiTermin_BisUhrzeit} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>KdiTermin_Dauer</span> <br></br>
+                 <Form.Control onChange={(e) => setv_KdiTermin_Dauer(e.target.value)} value={v_KdiTermin_Dauer} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Kdi_RechEMail</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Kdi_RechEMail(e.target.value)} value={v_Kdi_RechEMail} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Kdi_Terminwunsch</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Kdi_Terminwunsch(e.target.value)} value={v_Kdi_Terminwunsch} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Stoerungscode</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Stoerungscode(e.target.value)} value={v_Stoerungscode} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Kdi_GebaeudeKomplex</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Kdi_GebaeudeKomplex(e.target.value)} value={v_Kdi_GebaeudeKomplex} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Kdi_Gebaeude</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Kdi_Gebaeude(e.target.value)} value={v_Kdi_Gebaeude} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>KDI_WVAnlageArt</span> <br></br>
+                 <Form.Control onChange={(e) => setv_KDI_WVAnlageArt(e.target.value)} value={v_KDI_WVAnlageArt} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Kunde_Anrede</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Kunde_Anrede(e.target.value)} value={v_Kunde_Anrede} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Kunde_Name1</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Kunde_Name1(e.target.value)} value={v_Kunde_Name1} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Kunde_Name2</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Kunde_Name2(e.target.value)} value={v_Kunde_Name2} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Kunde_Strasse</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Kunde_Strasse(e.target.value)} value={v_Kunde_Strasse} type="text" /> <br></br>
+               </Col>
+
+
+               <Col sm="12">
+                 <span>Kunde_Postleitzahl</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Kunde_Postleitzahl(e.target.value)} value={v_Kunde_Postleitzahl} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Kunde_Ort</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Kunde_Ort(e.target.value)} value={v_Kunde_Ort} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Kdi_BesuchEMail</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Kdi_BesuchEMail(e.target.value)} value={v_Kdi_BesuchEMail} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Liefer_Strasse</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Liefer_Strasse(e.target.value)} value={v_Liefer_Strasse} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Liefer_Postleitzahl</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Liefer_Postleitzahl(e.target.value)} value={v_Liefer_Postleitzahl} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Liefer_Ort</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Liefer_Ort(e.target.value)} value={v_Liefer_Ort} type="text" /> <br></br>
+               </Col>
+
+                <Col sm="12">
+                 <span>Kunde_Tel_LandWahl</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Kunde_Tel_LandWahl(e.target.value)} value={v_Kunde_Tel_LandWahl} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Kunde_Tel_Vorwahl</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Kunde_Tel_Vorwahl(e.target.value)} value={v_Kunde_Tel_Vorwahl} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Kunde_Tel_Rufnummer</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Kunde_Tel_Rufnummer(e.target.value)} value={v_Kunde_Tel_Rufnummer} type="text" /> <br></br>
+               </Col>
+
+               <Col sm="12">
+                 <span>Kunde_Tel_Durchwahl</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Kunde_Tel_Durchwahl(e.target.value)} value={v_Kunde_Tel_Durchwahl} type="text" /> <br></br>
+               </Col>
+               
+             </Form.Group>
+             </Form>
+)}
+
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleCloseSpeichern}>
+            Speichern
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
       
 <Modal show={showEdit} onHide={handleCloseEdit}>
@@ -1409,6 +2074,12 @@ const search = async (d) => {
          {Rechte === "admin" ? (
           <Button size="lg" variant="danger" onClick={handleDeleteTermin}>
           Termin löschen
+        </Button>
+         ) : (null)}
+
+{Rechte === "admin" ? (
+          <Button size="lg" variant="info" onClick={editSpaltenWerte}>
+          Spaltenwerte bearbeiten
         </Button>
          ) : (null)}
           
@@ -1753,6 +2424,64 @@ const search = async (d) => {
         onChange={() => filterc('TerminBestaetigungsdatum')}
       /> 
       
+
+<Form.Check 
+        type="switch"
+        label="Liefer_Strasse"
+        className="farbe"
+        checked={Liefer_Strasse === true ? true : false}
+        onChange={() => filterc('Liefer_Strasse')}
+      /> 
+
+<Form.Check 
+        type="switch"
+        label="Liefer_Postleitzahl"
+        className="farbe"
+        checked={Liefer_Postleitzahl === true ? true : false}
+        onChange={() => filterc('Liefer_Postleitzahl')}
+      /> 
+
+<Form.Check 
+        type="switch"
+        label="Liefer_Ort"
+        className="farbe"
+        checked={Liefer_Ort === true ? true : false}
+        onChange={() => filterc('Liefer_Ort')}
+      /> 
+
+<Form.Check 
+        type="switch"
+        label="Kunde_Tel_LandWahl"
+        className="farbe"
+        checked={Kunde_Tel_LandWahl === true ? true : false}
+        onChange={() => filterc('Kunde_Tel_LandWahl')}
+      /> 
+
+<Form.Check 
+        type="switch"
+        label="Kunde_Tel_Vorwahl"
+        className="farbe"
+        checked={Kunde_Tel_Vorwahl === true ? true : false}
+        onChange={() => filterc('Kunde_Tel_Vorwahl')}
+      /> 
+
+<Form.Check 
+        type="switch"
+        label="Kunde_Tel_Rufnummer"
+        className="farbe"
+        checked={Kunde_Tel_Rufnummer === true ? true : false}
+        onChange={() => filterc('Kunde_Tel_Rufnummer')}
+      /> 
+
+<Form.Check 
+        type="switch"
+        label="Kunde_Tel_Durchwahl"
+        className="farbe"
+        checked={Kunde_Tel_Durchwahl === true ? true : false}
+        onChange={() => filterc('Kunde_Tel_Durchwahl')}
+      /> 
+
+
         
        
         </Form>
@@ -1875,6 +2604,14 @@ const search = async (d) => {
        {Kunde_Postleitzahl === true ? (<th>PLZ Mieter</th>) : (null)}
        {Kunde_Ort === true ? ( <th>Ort Mieter</th>) : (null)}
        {Kdi_BesuchEMail === true ? ( <th>Mail Mieter</th>) : (null)}
+       {Liefer_Strasse === true ? ( <th>Lieferstraße</th>) : (null)}
+       {Liefer_Postleitzahl === true ? ( <th>LieferPLZ</th>) : (null)}
+       {Liefer_Ort === true ? ( <th>Lieferort</th>) : (null)}
+       {Kunde_Tel_LandWahl === true ? ( <th>Kunde_Landwahl</th>) : (null)}
+       {Kunde_Tel_Vorwahl === true ? ( <th>Kunde_Vorwahl</th>) : (null)}
+       {Kunde_Tel_Rufnummer === true ? ( <th>Kunde Rufnummer</th>) : (null)}
+       {Kunde_Tel_Durchwahl === true ? ( <th>Kunde Durchwahl</th>) : (null)}
+     
         </tr>
       </thead>
       <tbody>
@@ -1883,7 +2620,69 @@ const search = async (d) => {
       
      
         currentPosts.map((v, index) => (
-        <tr className={(v.TerminBestaetigungsdatum !== '' ? 'p-3 mb-2 bg-successs' : '')} key={index} onClick={() => handleShowEdit(v.ID)}>
+        <tr className={(v.TerminBestaetigungsdatum !== '' ? 'p-3 mb-2 bg-successs' : '')} key={index} onClick={() => handleShowEdit(v.ID,
+          v.TerminBestaetigungsdatum,
+          v.Dokument_Nummer,
+          v.Datum_Dokument,
+          v.Zeit_Ersterfassung,
+          v.Liefer_AdressNummer,
+          v.Liefer_Anrede,
+          v.Liefer_Name1,
+          v.Liefer_Name2,
+          v.Liefer_Name3,
+          v.Liefer_Tel_LandWahl,
+          v.Liefer_Tel_Vorwahl,
+          v.Liefer_Tel_Rufnummer,
+          v.Liefer_Tel_Durchwahl,
+          v.DOK_Phase,
+          v.DOK_Disposition_Datum,
+          v.DOK_Disposition_Zeit,
+          v.Kdi_Gruppe,
+          v.KdiWartung_VertragNr,
+          v.KdiEingang_AnsprPart,
+          v.Kdi_AuftrBeschreibng,
+          v.KdiTermin_Datum,
+          v.KdiTermin_Uhrzeit,
+          v.KdiTermin_BisUhrzeit,
+          v.KdiTermin_Dauer,
+          v.Kdi_RechEMail,
+          v.Kdi_Terminwunsch,
+          v.Stoerungscode,
+          v.Kdi_GebaeudeKomplex,
+          v.Kdi_Gebaeude,
+          v.KDI_WVAnlageArt,
+          v.Kunde_Anrede,
+          v.Kunde_Name1,
+          v.Kunde_Name2,
+          v.Kunde_Strasse,
+          v.Kunde_Landeskennz,
+          v.Kunde_Postleitzahl,
+          v.Kunde_Ort,
+          v.Kdi_BesuchEMail,
+          v.Liefer_Strasse,
+          v.Liefer_Postleitzahl,
+          v.Liefer_Ort,
+          v.Kunde_Tel_LandWahl,
+          v.Kunde_Tel_Vorwahl,
+          v.Kunde_Tel_Rufnummer,
+          v.Kunde_Tel_Durchwahl
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        )}>
        {TerminBestaetigungsdatum === true ? ( <td >{v.TerminBestaetigungsdatum}</td>) : (null)}
        {DokumentenNummer === true ? (<td >{v.Dokument_Nummer}</td>) : (null)}
        {Datum_Dokument === true ? ( <td >{v.Datum_Dokument}</td>) : (null)}
@@ -1922,6 +2721,13 @@ const search = async (d) => {
        {Kunde_Postleitzahl === true ? ( <td >{v.Kunde_Postleitzahl}</td>) : (null)}
        {Kunde_Ort === true ? (<td >{v.Kunde_Ort}</td>) : (null)}
        {Kdi_BesuchEMail === true ? ( <td >{v.Kdi_BesuchEMail}</td>) : (null)}
+       {Liefer_Strasse === true ? ( <td>{v.Liefer_Strasse}</td>) : (null)}
+       {Liefer_Postleitzahl === true ? ( <td>{v.Liefer_Postleitzahl}</td>) : (null)}
+       {Liefer_Ort === true ? ( <td>{v.Liefer_Ort}</td>) : (null)}
+       {Kunde_Tel_LandWahl === true ? ( <td>{v.Kunde_Tel_LandWahl}</td>) : (null)}
+       {Kunde_Tel_Vorwahl === true ? ( <td>{v.Kunde_Tel_Vorwahl}</td>) : (null)}
+       {Kunde_Tel_Rufnummer === true ? ( <td>{v.Kunde_Tel_Rufnummer}</td>) : (null)}
+       {Kunde_Tel_Durchwahl === true ? ( <td>{v.Kunde_Tel_Durchwahl}</td>) : (null)}
       
       
           </tr>
