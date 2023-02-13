@@ -11,6 +11,9 @@ import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
 import {useNavigate} from "react-router-dom";
 import bild from  './App_Einstellungen.PNG';
+import TimePicker from 'react-time-picker';
+import DatePicker from 'react-date-picker';
+import moment from 'moment'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css';
 
@@ -44,9 +47,9 @@ function App() {
   const [v_KdiWartung_VertragNr, setv_KdiWartung_VertragNr] = useState('');
   const [v_KdiEingang_AnsprPart, setv_KdiEingang_AnsprPart] = useState('');
   const [v_Kdi_AuftrBeschreibng, setv_Kdi_AuftrBeschreibng] = useState('');
-  const [v_KdiTermin_Datum, setv_KdiTermin_Datum] = useState('');
-  const [v_KdiTermin_Uhrzeit, setv_KdiTermin_Uhrzeit] = useState('');
-  const [v_KdiTermin_BisUhrzeit, setv_KdiTermin_BisUhrzeit] = useState('');
+  const [v_KdiTermin_Datum, setv_KdiTermin_Datum] = useState(new Date());
+  const [v_KdiTermin_Uhrzeit, setv_KdiTermin_Uhrzeit] = useState('01:00');
+  const [v_KdiTermin_BisUhrzeit, setv_KdiTermin_BisUhrzeit] = useState('01:00');
   const [v_KdiTermin_Dauer, setv_KdiTermin_Dauer] = useState('');
   const [v_Kdi_RechEMail, setv_Kdi_RechEMail] = useState('');
   const [v_Kdi_Terminwunsch, setv_Kdi_Terminwunsch] = useState('');
@@ -71,12 +74,17 @@ function App() {
   const [v_Kunde_Tel_Durchwahl, setv_Kunde_Tel_Durchwahl ] = useState('');
   const [InputData, setInputData] = useState('');
   const [Laden, setLaden] = useState(false);
- 
+  const [startDate, setStartDate] = useState(new Date());
+  const [value, onChange] = useState('10:00');
+  const [valuee, onChangee] = useState('10:00');
+  const [valueee, onChangeee] = useState('10:00');
+  const [terminierung, setterminierung] = useState('');
+  const [terminierungg, setterminierungg] = useState('');
 
   const handleClose = () => setShow(false);
   const handleCloseEdit = () => {setShowEdit(false);};
   const handleShow = () => setShow(true);
-
+var p = '';
   const handleShowEdit = (ID,
     v_TerminBestaetigungsdatum,
 v_Dokument_Nummer,
@@ -151,7 +159,15 @@ setv_Kdi_Gruppe(v_Kdi_Gruppe);
 setv_KdiWartung_VertragNr(v_KdiWartung_VertragNr);
 setv_KdiEingang_AnsprPart(v_KdiEingang_AnsprPart);
 setv_Kdi_AuftrBeschreibng(v_Kdi_AuftrBeschreibng);
-setv_KdiTermin_Datum(v_KdiTermin_Datum);
+p = v_KdiTermin_Datum;
+var myArray = v_KdiTermin_Datum.split(".");
+var zusammen = myArray[2] + '-' + myArray[1] + '-' + myArray[0];
+var parse = new Date(zusammen);
+setv_KdiTermin_Datum(parse);
+setStartDate(parse);
+onChange(v_KdiTermin_Uhrzeit);
+onChangee(v_KdiTermin_BisUhrzeit);
+onChangeee(v_KdiTermin_Dauer);
 setv_KdiTermin_Uhrzeit(v_KdiTermin_Uhrzeit);
 setv_KdiTermin_BisUhrzeit(v_KdiTermin_BisUhrzeit);
 setv_KdiTermin_Dauer(v_KdiTermin_Dauer);
@@ -161,6 +177,7 @@ setv_Stoerungscode(v_Stoerungscode);
 setv_Kdi_GebaeudeKomplex(v_Kdi_GebaeudeKomplex);
 setv_Kdi_Gebaeude(v_Kdi_Gebaeude);
 setv_KDI_WVAnlageArt(v_KDI_WVAnlageArt);
+setv_Kunde_Landeskennz(v_Kunde_Landeskennz);
 setv_Kunde_Anrede(v_Kunde_Anrede);
 setv_Kunde_Name1(v_Kunde_Name1);
 setv_Kunde_Name2(v_Kunde_Name2);
@@ -180,7 +197,7 @@ setv_Kunde_Tel_Durchwahl(v_Kunde_Tel_Durchwahl);
    
   
   };
-  const handleEdit = () => setShowEdit(true);
+ 
 
   const handleBestaetigen = async () => {
     setLoadingModal(true);
@@ -252,10 +269,47 @@ setv_Kunde_Tel_Durchwahl(v_Kunde_Tel_Durchwahl);
 
   const bestaetigen = async () => {
     setLoadingModal(true);
+    console.log(terminierung);
+    console.log(value);
+    console.log(valuee);
+    console.log(valueee);
+  var all = '';
+ if(terminierung === ''){
+     
+      var mm = v_KdiTermin_Datum.getDate();
+      var tt = mm < 10 ? ('0' + mm) : (mm);
+      var m = v_KdiTermin_Datum.getMonth() + 1;
+      var t = m < 10 ? ('0' + m) : (m);
+      var ddd = tt + '.' + t + '.' + v_KdiTermin_Datum.getFullYear();
+
+    
+
+      
+      all = ddd;
+    
+    }else{
+      
+      var arr = terminierung.split("-");
+       all = arr[2]  + '.' + arr[1] + '.' + arr[0];
+       if(arr[0].length <= 2){
+        all = arr[2]  + '.' + arr[1] + '.20' + arr[0];
+       }
+       var m = moment(terminierung, 'YYYY-MM-DD');
+       if(m.isValid() === false){
+        var mm = v_KdiTermin_Datum.getDate();
+        var tt = mm < 10 ? ('0' + mm) : (mm);
+        var m = v_KdiTermin_Datum.getMonth() + 1;
+        var t = m < 10 ? ('0' + m) : (m);
+        var ddd = tt + '.' + t + '.' + v_KdiTermin_Datum.getFullYear();
+        all = ddd;
+       } 
+
+      
+    }
     
     try {
       const res = await axios.get('https://dhworld.dietenmeier-harsch.de/Selbstbestaetigung.php', {
-        params: { TerminID: TerminID, InputData: InputData}, 
+        params: { TerminID: TerminID, auftragsdatum: all, start: value, bis: valuee, dauer: valueee}, 
         
       
       });
@@ -1694,7 +1748,39 @@ const search = async (d) => {
   }
 
   const handleCloseSpeichern = async () => {
+    var all = '';
     setLaden(true);
+    if(terminierungg === ''){
+     
+      var mm = v_KdiTermin_Datum.getDate();
+      var tt = mm < 10 ? ('0' + mm) : (mm);
+      var m = v_KdiTermin_Datum.getMonth() + 1;
+      var t = m < 10 ? ('0' + m) : (m);
+      var ddd = tt + '.' + t + '.' + v_KdiTermin_Datum.getFullYear();
+
+    
+
+      
+      all = ddd;
+    
+    }else{
+      
+      var arr = terminierungg.split("-");
+       all = arr[2]  + '.' + arr[1] + '.' + arr[0];
+       if(arr[0].length <= 2){
+        all = arr[2]  + '.' + arr[1] + '.20' + arr[0];
+       }
+       var m = moment(terminierungg, 'YYYY-MM-DD');
+       if(m.isValid() === false){
+        var mm = v_KdiTermin_Datum.getDate();
+        var tt = mm < 10 ? ('0' + mm) : (mm);
+        var m = v_KdiTermin_Datum.getMonth() + 1;
+        var t = m < 10 ? ('0' + m) : (m);
+        var ddd = tt + '.' + t + '.' + v_KdiTermin_Datum.getFullYear();
+        all = ddd;
+       } 
+    }
+ 
     var params = {
       TerminID: TerminID, 
       v_Dokument_Nummer: v_Dokument_Nummer,
@@ -1717,7 +1803,7 @@ const search = async (d) => {
       v_KdiWartung_VertragNr: v_KdiWartung_VertragNr,
       v_KdiEingang_AnsprPart: v_KdiEingang_AnsprPart,
       v_Kdi_AuftrBeschreibng: v_Kdi_AuftrBeschreibng,
-      v_KdiTermin_Datum: v_KdiTermin_Datum,
+      v_KdiTermin_Datum: all,
       v_KdiTermin_Uhrzeit: v_KdiTermin_Uhrzeit,
       v_KdiTermin_BisUhrzeit: v_KdiTermin_BisUhrzeit,
       v_KdiTermin_Dauer: v_KdiTermin_Dauer,
@@ -1772,6 +1858,41 @@ const search = async (d) => {
 
 
    
+  }
+var ff = '';
+  const dd = (f) => {
+    var e = new Date (f);
+    var mm = e.getDate();
+    var tt = mm < 10 ? ('0' + mm) : (mm);
+    var m = e.getMonth() + 1;
+    var t = m < 10 ? ('0' + m) : (m);
+    var ddd = tt + '.' + t + '.' + e.getFullYear();
+    var arr = ddd.split(".");
+    var all = arr[2]  + '-' + arr[1] + '-' + arr[0];
+    setterminierungg(all);
+    ff = all;
+    console.log(ff);
+
+  }
+
+  var fff = '';
+  const tre = async (f) => {
+    var e = new Date (f);
+    var mm = e.getDate();
+    var tt = mm < 10 ? ('0' + mm) : (mm);
+    var m = e.getMonth() + 1;
+    var t = m < 10 ? ('0' + m) : (m);
+    var ddd = tt + '.' + t + '.' + e.getFullYear();
+    var arr = ddd.split(".");
+    var all = arr[2]  + '-' + arr[1] + '-' + arr[0];
+    setterminierung(all);
+    fff = all;
+    console.log(fff);
+    console.log(value);
+    console.log(valuee);
+    console.log(valueee);
+
+
   }
 
 
@@ -1904,26 +2025,34 @@ const search = async (d) => {
                </Col>
 
                <Col sm="12">
-                 <span>KdiTermin_Datum</span> <br></br>
-                 <Form.Control onChange={(e) => setv_KdiTermin_Datum(e.target.value)} value={v_KdiTermin_Datum} type="text" /> <br></br>
+                 <span>Auftragsdatum</span> <br></br>
+                 <DatePicker disableCalendar={true} format={"dd-MM-yyyy"} onChange={dd} value={v_KdiTermin_Datum} />
+              <br></br>
                </Col>
 
                <Col sm="12">
+               <br></br>
                  <span>KdiTermin_Uhrzeit</span> <br></br>
-                 <Form.Control onChange={(e) => setv_KdiTermin_Uhrzeit(e.target.value)} value={v_KdiTermin_Uhrzeit} type="text" /> <br></br>
+                 <TimePicker disableClock={true} format={"HH:mm"} onChange={setv_KdiTermin_Uhrzeit} value={v_KdiTermin_Uhrzeit} />
+              
                </Col>
 
                <Col sm="12">
+               <br></br>
                  <span>KdiTermin_BisUhrzeit</span> <br></br>
-                 <Form.Control onChange={(e) => setv_KdiTermin_BisUhrzeit(e.target.value)} value={v_KdiTermin_BisUhrzeit} type="text" /> <br></br>
+                 <TimePicker disableClock={true} format={"HH:mm"} onChange={setv_KdiTermin_BisUhrzeit} value={v_KdiTermin_BisUhrzeit} />
+               
                </Col>
 
                <Col sm="12">
+               <br></br>
                  <span>KdiTermin_Dauer</span> <br></br>
-                 <Form.Control onChange={(e) => setv_KdiTermin_Dauer(e.target.value)} value={v_KdiTermin_Dauer} type="text" /> <br></br>
+                 <TimePicker disableClock={true} format={"HH:mm"} onChange={setv_KdiTermin_Dauer} value={v_KdiTermin_Dauer} />
+            
                </Col>
 
                <Col sm="12">
+               <br></br>
                  <span>Kdi_RechEMail</span> <br></br>
                  <Form.Control onChange={(e) => setv_Kdi_RechEMail(e.target.value)} value={v_Kdi_RechEMail} type="text" /> <br></br>
                </Col>
@@ -2023,6 +2152,11 @@ const search = async (d) => {
                  <span>Kunde_Tel_Durchwahl</span> <br></br>
                  <Form.Control onChange={(e) => setv_Kunde_Tel_Durchwahl(e.target.value)} value={v_Kunde_Tel_Durchwahl} type="text" /> <br></br>
                </Col>
+
+               <Col sm="12">
+                 <span>Kunde_Landeskennzeichen</span> <br></br>
+                 <Form.Control onChange={(e) => setv_Kunde_Landeskennz(e.target.value)} value={v_Kunde_Landeskennz} type="text" /> <br></br>
+               </Col>
                
              </Form.Group>
              </Form>
@@ -2057,18 +2191,22 @@ const search = async (d) => {
           <Button size="lg" variant="secondary" onClick={handleNeuerTermin}>Neuer Termin</Button>
             
             {InputField === true ? (
-             <Form>
-             <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+             <Row>
+             
               
                <Col sm="8">
-                 <Form.Control onChange={(e) => setInputData(e.target.value)} type="text" placeholder="Beispiel: 09.01.2023 09:46" /> <br></br>
+               <span>Auftragsdatum:</span><br></br><DatePicker disableCalendar={true} format={"dd-MM-yyyy"} onChange={tre} value={startDate} /><br></br><br></br>
+               <span>Startuhrzeit:</span><br></br><TimePicker disableClock={true} format={"HH:mm"} onChange={onChange} value={value} /><br></br><br></br>
+               <span>Endzeit:</span><br></br><TimePicker disableClock={true} format={"HH:mm"} onChange={onChangee} value={valuee} /><br></br><br></br>
+               <span>Dauer:</span><br></br><TimePicker disableClock={true} format={"HH:mm"} onChange={onChangeee} value={valueee} /><br></br><br></br>
+              
                  <Button  variant="info" onClick={bestaetigen}>
             Bestätigen
           </Button>
                </Col>
-             </Form.Group>
-             </Form>
-       
+               </Row>
+         
+            
             ) : (null)}
          
          {Rechte === "admin" ? (

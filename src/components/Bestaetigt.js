@@ -20,7 +20,7 @@ const Bestaetigt = () => {
     const onLoad = async () => {
       setLoadingModal(true);
       try {
-              const res = await axios.get('https://dhworld.dietenmeier-harsch.de/done.php', {
+              const res = await axios.get('http://dhworld.dietenmeier-harsch.de:81/done.php', {
               params: { id: id}, 
               
               
