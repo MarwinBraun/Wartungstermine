@@ -20,7 +20,7 @@ import './App.css';
 function App() {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setpostsPerPage] = useState(10);
+  const [postsPerPage, setpostsPerPage] = useState(100);
   const [Daten, setDaten] = useState([]);
   const [Loading, setLoading] = useState(false);
   const [LoadingModal, setLoadingModal] = useState(false);
@@ -80,6 +80,12 @@ function App() {
   const [valueee, onChangeee] = useState('10:00');
   const [terminierung, setterminierung] = useState('');
   const [terminierungg, setterminierungg] = useState('');
+  const [bestaetigteMail, setbestaetigteMail] = useState(false);
+  const [bestaetigtePost, setbestaetigtePost] = useState(false);
+  const [bestaetigteMit, setbestaetigteMit] = useState(false);
+  const [bestaetigteGesamtanzahl, setbestaetigteGesamtanzahl] = useState(false);
+  const [bestaetigtetermineesk1, setbestaetigtetermineesk1] = useState(false);
+  const [bestaetigtetermineesk2, setbestaetigtetermineesk2] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleCloseEdit = () => {setShowEdit(false);};
@@ -480,6 +486,12 @@ Kunde_Tel_Durchwahl : Kunde_Tel_Durchwahl,
       
 
      setDaten(res.data.daten);
+     setbesMail(res.data.besMail);
+     setbesPost(res.data.besPost);
+     setbesMit(res.data.besMit);
+     setGesamtanzahl(res.data.Gesamtanzahl);
+     settermineesk1(res.data.termineesk1);
+     settermineesk2(res.data.termineesk2);
      setLoading(false);
 
      
@@ -547,7 +559,12 @@ Kunde_Tel_Durchwahl : Kunde_Tel_Durchwahl,
   const [Kunde_Tel_Vorwahl, setKunde_Tel_Vorwahl] = useState(true);
   const [Kunde_Tel_Rufnummer, setKunde_Tel_Rufnummer] = useState(true);
   const [Kunde_Tel_Durchwahl, setKunde_Tel_Durchwahl] = useState(true);
-
+  const [besMail, setbesMail] = useState(0);
+  const [besPost, setbesPost] = useState(0);
+  const [besMit, setbesMit] = useState(0);
+  const [Gesamtanzahl, setGesamtanzahl] = useState(0);
+  const [termineesk1, settermineesk1] = useState(0);
+  const [termineesk2, settermineesk2] = useState(0);
 
   useEffect(() => {  
     
@@ -684,6 +701,13 @@ Kunde_Tel_Durchwahl : Kunde_Tel_Durchwahl,
         
   
        setDaten(res.data.daten);
+       
+     setbesMail(res.data.besMail);
+     setbesPost(res.data.besPost);
+     setbesMit(res.data.besMit);
+     setGesamtanzahl(res.data.Gesamtanzahl);
+     settermineesk1(res.data.termineesk1);
+     settermineesk2(res.data.termineesk2);
        setLoading(false);
   
        
@@ -725,6 +749,155 @@ const search = async (d) => {
   var vall = val.replaceAll("'", "");
 
 
+  if(bestaetigteMail){
+
+    try {
+      const res = await axios.get('https://dhworld.dietenmeier-harsch.de/autocompleteBesMail.php',  {
+        params: {val: vall}
+      
+      });
+      
+      
+
+     setDaten(res.data.daten);
+     setCurrentPage(1);
+     setLoading(false);
+
+     
+    } catch (err) {
+      if (err.response.status === 500) {
+        alert('There was a problem with the server');
+      } else {
+        alert(err.response.data.msg);
+      }
+      
+    }
+
+  } else if (bestaetigtePost) {
+
+    try {
+      const res = await axios.get('https://dhworld.dietenmeier-harsch.de/autocompleteBesPost.php',  {
+        params: {val: vall}
+      
+      });
+      
+      
+
+     setDaten(res.data.daten);
+     setCurrentPage(1);
+     setLoading(false);
+
+     
+    } catch (err) {
+      if (err.response.status === 500) {
+        alert('There was a problem with the server');
+      } else {
+        alert(err.response.data.msg);
+      }
+      
+    }
+
+  } else if (bestaetigteMit) {
+
+    try {
+      const res = await axios.get('https://dhworld.dietenmeier-harsch.de/autocompleteBesMit.php',  {
+        params: {val: vall}
+      
+      });
+      
+      
+
+     setDaten(res.data.daten);
+     setCurrentPage(1);
+     setLoading(false);
+
+     
+    } catch (err) {
+      if (err.response.status === 500) {
+        alert('There was a problem with the server');
+      } else {
+        alert(err.response.data.msg);
+      }
+      
+    }
+
+  } else if (bestaetigteGesamtanzahl) {
+
+    try {
+      const res = await axios.get('https://dhworld.dietenmeier-harsch.de/autocompleteBesbestaetigteGesamtanzahl.php',  {
+        params: {val: vall}
+      
+      });
+      
+      
+
+     setDaten(res.data.daten);
+     setCurrentPage(1);
+     setLoading(false);
+
+     
+    } catch (err) {
+      if (err.response.status === 500) {
+        alert('There was a problem with the server');
+      } else {
+        alert(err.response.data.msg);
+      }
+      
+    }
+
+  } else if (bestaetigtetermineesk1) {
+
+    try {
+      const res = await axios.get('https://dhworld.dietenmeier-harsch.de/autocompleteBesbestaetigtetermineesk1.php',  {
+        params: {val: vall}
+      
+      });
+      
+      
+
+     setDaten(res.data.daten);
+     setCurrentPage(1);
+     setLoading(false);
+
+     
+    } catch (err) {
+      if (err.response.status === 500) {
+        alert('There was a problem with the server');
+      } else {
+        alert(err.response.data.msg);
+      }
+      
+    }
+
+  } else if (bestaetigtetermineesk2) {
+
+    try {
+      const res = await axios.get('https://dhworld.dietenmeier-harsch.de/autocompleteBesbestaetigtetermineesk2.php',  {
+        params: {val: vall}
+      
+      });
+      
+      
+
+     setDaten(res.data.daten);
+     setCurrentPage(1);
+     setLoading(false);
+
+     
+    } catch (err) {
+      if (err.response.status === 500) {
+        alert('There was a problem with the server');
+      } else {
+        alert(err.response.data.msg);
+      }
+      
+    }
+
+  }
+     else {
+
+
+
  
     try {
         const res = await axios.get('https://dhworld.dietenmeier-harsch.de/autocomplete.php',  {
@@ -747,6 +920,8 @@ const search = async (d) => {
         }
         
       }
+
+    }
 }
 
 
@@ -1896,6 +2071,222 @@ var ff = '';
   }
 
 
+  const ZeigeMail = async () => {
+   
+    setbestaetigteMail(true);
+    setbestaetigtePost(false);
+    setbestaetigteMit(false);
+    setbestaetigteGesamtanzahl(false);
+    setbestaetigtetermineesk1(false);
+    setbestaetigtetermineesk2(false);
+  
+    try {
+      const res = await axios.get('https://dhworld.dietenmeier-harsch.de/ZeigeMail.php', {
+       
+        
+      
+      });
+      
+      
+  
+      
+      setDaten(res.data.daten);
+      
+     
+     
+    } catch (err) {
+      if (err.response.status === 500) {
+        alert('There was a problem with the server');
+      } else {
+        alert(err.response.data.msg);
+      }
+      
+    }
+
+
+  }
+
+  const ZeigeQR = async () => {
+   
+    setbestaetigtePost(true);
+    setbestaetigteMail(false);
+    setbestaetigteMit(false);
+    setbestaetigteGesamtanzahl(false);
+    setbestaetigtetermineesk1(false);
+    setbestaetigtetermineesk2(false);
+  
+    try {
+      const res = await axios.get('https://dhworld.dietenmeier-harsch.de/ZeigeQR.php', {
+       
+        
+      
+      });
+      
+      
+  
+      
+      setDaten(res.data.daten);
+      
+     
+     
+    } catch (err) {
+      if (err.response.status === 500) {
+        alert('There was a problem with the server');
+      } else {
+        alert(err.response.data.msg);
+      }
+      
+    }
+    
+  }
+
+  const ZeigeMit = async () => {
+   
+    setbestaetigteMit(true);
+    setbestaetigteMail(false);
+    setbestaetigtePost(false);
+    setbestaetigteGesamtanzahl(false);
+    setbestaetigtetermineesk1(false);
+    setbestaetigtetermineesk2(false);
+  
+    try {
+      const res = await axios.get('https://dhworld.dietenmeier-harsch.de/ZeigeMit.php', {
+       
+        
+      
+      });
+      
+      
+  
+      
+      setDaten(res.data.daten);
+      
+     
+     
+    } catch (err) {
+      if (err.response.status === 500) {
+        alert('There was a problem with the server');
+      } else {
+        alert(err.response.data.msg);
+      }
+      
+    }
+
+    
+  }
+
+  const ZeigeGesamt = async () => {
+   
+    setbestaetigteGesamtanzahl(true);
+    setbestaetigteMail(false);
+    setbestaetigtePost(false);
+    setbestaetigteMit(false);
+    setbestaetigtetermineesk1(false);
+    setbestaetigtetermineesk2(false);
+  
+    try {
+      const res = await axios.get('https://dhworld.dietenmeier-harsch.de/ZeigeGesamt.php', {
+       
+        
+      
+      });
+      
+      
+  
+      
+      setDaten(res.data.daten);
+      
+     
+     
+    } catch (err) {
+      if (err.response.status === 500) {
+        alert('There was a problem with the server');
+      } else {
+        alert(err.response.data.msg);
+      }
+      
+    }
+
+    
+  }
+
+  const ZeigeErste = async () => {
+   
+    setbestaetigtetermineesk1(true);
+    setbestaetigteMail(false);
+    setbestaetigtePost(false);
+    setbestaetigteMit(false);
+    setbestaetigteGesamtanzahl(false);
+    setbestaetigtetermineesk2(false);
+  
+    try {
+      const res = await axios.get('https://dhworld.dietenmeier-harsch.de/ZeigeErste.php', {
+       
+        
+      
+      });
+      
+      
+  
+      
+      setDaten(res.data.daten);
+      
+     
+     
+    } catch (err) {
+      if (err.response.status === 500) {
+        alert('There was a problem with the server');
+      } else {
+        alert(err.response.data.msg);
+      }
+      
+    }
+
+    
+  }
+ 
+
+  const ZeigeZweite = async () => {
+   
+    setbestaetigtetermineesk2(true);
+    setbestaetigteMail(false);
+    setbestaetigtePost(false);
+    setbestaetigteMit(false);
+    setbestaetigteGesamtanzahl(false);
+    setbestaetigtetermineesk1(false);
+
+  
+    try {
+      const res = await axios.get('https://dhworld.dietenmeier-harsch.de/ZeigeZweite.php', {
+       
+        
+      
+      });
+      
+      
+  
+      
+      setDaten(res.data.daten);
+      
+     
+     
+    } catch (err) {
+      if (err.response.status === 500) {
+        alert('There was a problem with the server');
+      } else {
+        alert(err.response.data.msg);
+      }
+      
+    }
+
+    
+  }
+ 
+ 
+ 
+ 
+ 
+
   return (
 
 
@@ -2215,7 +2606,7 @@ var ff = '';
         </Button>
          ) : (null)}
 
-{Rechte === "admin" ? (
+{Rechte === "admin" || Rechte === "Bearbeiter" ? (
           <Button size="lg" variant="info" onClick={editSpaltenWerte}>
           Spaltenwerte bearbeiten
         </Button>
@@ -2656,6 +3047,17 @@ var ff = '';
   </Col>
 </Row>
 <br/>
+
+<Row className="text-center justify-content-center">
+  <Col xs={12} md={12} lg={12} sm={12}>
+<h5 onClick={ZeigeMail}>Anzahl Termine, die über den Link in der E-Mail bestätigt wurden: <span>{besMail}</span></h5> <br></br>
+<h5 onClick={ZeigeQR}>Anzahl Termine, die über den QR-Code im Brief bestätigt wurden: <span>{besPost}</span></h5><br></br>
+<h5 onClick={ZeigeMit}>Anzahl Termine, die manuell durch einen Mitarbeiter in der DH World bestätigt wurden: <span>{besMit}</span></h5><br></br>
+<h5 onClick={ZeigeGesamt}>Anzahl Termine, die versendet wurden: <span>{Gesamtanzahl}</span></h5><br></br>
+<h5 onClick={ZeigeErste}>Anzahl Termine, die in der ersten Eskalationsstufe sind: <span>{termineesk1}</span></h5><br></br>
+<h5 onClick={ZeigeZweite}>Anzahl Termine, die in der zweiten Eskalationsstufe sind: <span>{termineesk2}</span></h5><br></br>
+  </Col>
+</Row>
 
 <Row className="text-center justify-content-center">
   <Col xs={12} md={6}>

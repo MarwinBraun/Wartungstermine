@@ -70,3 +70,8 @@ td{
     transform: rotate(360deg);
   }
 }
+
+
+h5{
+  cursor: pointer;
+}
